@@ -9,7 +9,7 @@ package Networkingapp;
  *
  * @author Linda <lujiecanada@gmail.com>
  */
-public class NetworkingApp {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -18,10 +18,10 @@ public class NetworkingApp {
         // TODO code application logic here
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login login = new Login();
-                login.setVisible(true);
-                login.setSize(620,370);
-                login.setLocationRelativeTo(null);
+               FirstPage go = new FirstPage();
+               go.setVisible(true);
+               go.setSize(800,522);
+               go.setLocationRelativeTo(null);
             }
         });
     }
