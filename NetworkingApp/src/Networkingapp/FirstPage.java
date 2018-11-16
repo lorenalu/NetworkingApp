@@ -27,96 +27,109 @@ public class FirstPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        textLine1 = new javax.swing.JLabel();
+        textLine2 = new javax.swing.JLabel();
+        loginButton = new javax.swing.JButton();
+        signUpButton = new javax.swing.JButton();
+        backgroud = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Myanmar MN", 0, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel2.setText("Yesterday gets Jealous ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 180, 250, 60);
+        textLine1.setBackground(new java.awt.Color(0, 0, 0));
+        textLine1.setFont(new java.awt.Font("Myanmar MN", 0, 20)); // NOI18N
+        textLine1.setForeground(new java.awt.Color(0, 51, 51));
+        textLine1.setText("Make Today So AWESOME");
+        getContentPane().add(textLine1);
+        textLine1.setBounds(70, 150, 280, 60);
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Myanmar MN", 0, 20)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel3.setText("Make Today So AWESOME");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 150, 280, 60);
+        textLine2.setBackground(new java.awt.Color(0, 0, 0));
+        textLine2.setFont(new java.awt.Font("Myanmar MN", 0, 20)); // NOI18N
+        textLine2.setForeground(new java.awt.Color(0, 51, 51));
+        textLine2.setText("Yesterday gets Jealous ");
+        getContentPane().add(textLine2);
+        textLine2.setBounds(80, 180, 250, 60);
 
-        jButton2.setBackground(new java.awt.Color(255, 168, 208));
-        jButton2.setFont(new java.awt.Font("Myanmar MN", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Login");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setBorderPainted(false);
-        jButton2.setOpaque(true);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginButton.setBackground(new java.awt.Color(255, 168, 208));
+        loginButton.setFont(new java.awt.Font("Myanmar MN", 1, 18)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginButton.setText("Login");
+        loginButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginButton.setBorderPainted(false);
+        loginButton.setOpaque(true);
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                loginButtonMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(60, 360, 100, 40);
+        getContentPane().add(loginButton);
+        loginButton.setBounds(60, 360, 100, 40);
 
-        jButton3.setBackground(new java.awt.Color(255, 168, 208));
-        jButton3.setFont(new java.awt.Font("Myanmar MN", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Sign Up");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.setBorderPainted(false);
-        jButton3.setOpaque(true);
-        jButton3.addFocusListener(new java.awt.event.FocusAdapter() {
+        signUpButton.setBackground(new java.awt.Color(255, 168, 208));
+        signUpButton.setFont(new java.awt.Font("Myanmar MN", 1, 18)); // NOI18N
+        signUpButton.setForeground(new java.awt.Color(255, 255, 255));
+        signUpButton.setText("Sign Up");
+        signUpButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        signUpButton.setBorderPainted(false);
+        signUpButton.setOpaque(true);
+        signUpButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jButton3FocusGained(evt);
+                signUpButtonFocusGained(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        signUpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpButtonMouseClicked(evt);
+            }
+        });
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                signUpButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(230, 360, 100, 40);
+        getContentPane().add(signUpButton);
+        signUpButton.setBounds(230, 360, 100, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/FirstPage.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 800, 500);
+        backgroud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/FirstPage.jpg"))); // NOI18N
+        getContentPane().add(backgroud);
+        backgroud.setBounds(0, 0, 800, 500);
 
-        pack();
+        setSize(new java.awt.Dimension(802, 522));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_signUpButtonActionPerformed
 
-    private void jButton3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton3FocusGained
+    private void signUpButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_signUpButtonFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3FocusGained
+    }//GEN-LAST:event_signUpButtonFocusGained
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-
+    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
+        this.setVisible(false);
         Login login = new Login();
         login.setVisible(true);
         login.setSize(620,370);
         login.setLocationRelativeTo(null);
+    }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2MouseClicked
+        CreateUser createUser = new CreateUser();
+        createUser.setVisible(true);
+        createUser.setSize(620,370);
+        createUser.setLocationRelativeTo(null);
+    }//GEN-LAST:event_signUpButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,10 +167,10 @@ public class FirstPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel backgroud;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JButton signUpButton;
+    private javax.swing.JLabel textLine1;
+    private javax.swing.JLabel textLine2;
     // End of variables declaration//GEN-END:variables
 }
