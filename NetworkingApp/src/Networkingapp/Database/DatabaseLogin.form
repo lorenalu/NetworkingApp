@@ -31,7 +31,7 @@
       <Properties>
         <Property name="closable" type="boolean" value="true"/>
         <Property name="title" type="java.lang.String" value="Warnning!"/>
-        <Property name="visible" type="boolean" value="true"/>
+        <Property name="visible" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

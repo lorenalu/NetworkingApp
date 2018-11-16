@@ -51,7 +51,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
         conFail_frame.setClosable(true);
         conFail_frame.setTitle("Warnning!");
-        conFail_frame.setVisible(true);
+        conFail_frame.setVisible(false);
         conFail_frame.getContentPane().setLayout(null);
 
         conFail_label.setText("Connection Faild.");
