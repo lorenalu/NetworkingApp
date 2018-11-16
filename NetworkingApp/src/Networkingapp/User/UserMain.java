@@ -30,16 +30,17 @@ public class UserMain extends javax.swing.JFrame {
         editProfile_frame = new javax.swing.JInternalFrame();
         save_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        name_label = new javax.swing.JLabel();
+        gender_label = new javax.swing.JLabel();
+        age_label = new javax.swing.JLabel();
+        about_label = new javax.swing.JLabel();
         userName_txt = new javax.swing.JFormattedTextField();
-        gender_txt = new javax.swing.JFormattedTextField();
         age_txt = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Address_txt = new javax.swing.JTextArea();
+        plain_label = new javax.swing.JLabel();
+        editProfile_txtpanel = new javax.swing.JScrollPane();
+        about_txt = new javax.swing.JTextArea();
+        gender_cb = new javax.swing.JComboBox<>();
+        editProfile_bg_label = new javax.swing.JLabel();
         bg_panel = new javax.swing.JPanel();
         myPost_button = new javax.swing.JButton();
         allPost_button = new javax.swing.JButton();
@@ -48,8 +49,8 @@ public class UserMain extends javax.swing.JFrame {
         userID_label = new javax.swing.JLabel();
         select_uID = new javax.swing.JLabel();
         logout_button = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        display_textPane1 = new javax.swing.JTextPane();
+        display_txtPanel = new javax.swing.JScrollPane();
+        display_txt = new javax.swing.JTextPane();
         bg_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,94 +62,65 @@ public class UserMain extends javax.swing.JFrame {
         editProfile_frame.setClosable(true);
         editProfile_frame.setTitle("Edit Profile");
         editProfile_frame.setVisible(false);
+        editProfile_frame.getContentPane().setLayout(null);
 
         save_button.setText("Save");
+        editProfile_frame.getContentPane().add(save_button);
+        save_button.setBounds(80, 310, 90, 29);
 
         cancel_button.setText("Cancel");
+        cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_buttonMouseClicked(evt);
+            }
+        });
+        editProfile_frame.getContentPane().add(cancel_button);
+        cancel_button.setBounds(250, 310, 86, 29);
 
-        jLabel1.setText("User Name");
+        name_label.setText("User Name");
+        editProfile_frame.getContentPane().add(name_label);
+        name_label.setBounds(49, 36, 68, 16);
 
-        jLabel2.setText("Gender");
+        gender_label.setText("Gender");
+        editProfile_frame.getContentPane().add(gender_label);
+        gender_label.setBounds(49, 124, 44, 16);
 
-        jLabel3.setText("Age");
+        age_label.setText("Age");
+        editProfile_frame.getContentPane().add(age_label);
+        age_label.setBounds(49, 80, 24, 16);
 
-        jLabel4.setText("About Yourself");
+        about_label.setText("About Yourself");
+        editProfile_frame.getContentPane().add(about_label);
+        about_label.setBounds(30, 200, 94, 16);
+        editProfile_frame.getContentPane().add(userName_txt);
+        userName_txt.setBounds(161, 31, 158, 26);
+        editProfile_frame.getContentPane().add(age_txt);
+        age_txt.setBounds(161, 75, 158, 26);
 
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel5.setText("Not required, but suggest to fill in information.");
+        plain_label.setForeground(new java.awt.Color(102, 102, 102));
+        plain_label.setText("Not required, but suggest to fill in information.");
+        editProfile_frame.getContentPane().add(plain_label);
+        plain_label.setBounds(40, 280, 298, 16);
 
-        Address_txt.setColumns(20);
-        Address_txt.setLineWrap(true);
-        Address_txt.setRows(5);
-        jScrollPane1.setViewportView(Address_txt);
+        about_txt.setColumns(20);
+        about_txt.setLineWrap(true);
+        about_txt.setRows(5);
+        editProfile_txtpanel.setViewportView(about_txt);
 
-        javax.swing.GroupLayout editProfile_frameLayout = new javax.swing.GroupLayout(editProfile_frame.getContentPane());
-        editProfile_frame.getContentPane().setLayout(editProfile_frameLayout);
-        editProfile_frameLayout.setHorizontalGroup(
-            editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editProfile_frameLayout.createSequentialGroup()
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(editProfile_frameLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(editProfile_frameLayout.createSequentialGroup()
-                                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(editProfile_frameLayout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)))
-                                    .addComponent(jLabel4))
-                                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(editProfile_frameLayout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
-                                        .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(userName_txt)
-                                            .addComponent(age_txt)
-                                            .addComponent(gender_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
-                                    .addGroup(editProfile_frameLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel5))
-                        .addGap(5, 5, 5))
-                    .addGroup(editProfile_frameLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(save_button)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancel_button)))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        editProfile_frameLayout.setVerticalGroup(
-            editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editProfile_frameLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(userName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(age_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(gender_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save_button)
-                    .addComponent(cancel_button))
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
+        editProfile_frame.getContentPane().add(editProfile_txtpanel);
+        editProfile_txtpanel.setBounds(147, 163, 190, 100);
+
+        gender_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Female", "Male", "Girl", "Boy", "Secret" }));
+        editProfile_frame.getContentPane().add(gender_cb);
+        gender_cb.setBounds(160, 120, 160, 27);
+
+        editProfile_bg_label.setBackground(new java.awt.Color(204, 204, 204));
+        editProfile_bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/edit-profile.png"))); // NOI18N
+        editProfile_frame.getContentPane().add(editProfile_bg_label);
+        editProfile_bg_label.setBounds(-100, -50, 500, 450);
 
         getContentPane().add(editProfile_frame);
-        editProfile_frame.setBounds(10, 10, 390, 381);
+        editProfile_frame.setBounds(10, 10, 389, 381);
 
         bg_panel.setBackground(new java.awt.Color(255, 255, 255));
         bg_panel.setLayout(null);
@@ -201,12 +173,12 @@ public class UserMain extends javax.swing.JFrame {
         bg_panel.add(logout_button);
         logout_button.setBounds(470, 300, 88, 29);
 
-        display_textPane1.setEditable(false);
-        display_textPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User Profile"));
-        jScrollPane2.setViewportView(display_textPane1);
+        display_txt.setEditable(false);
+        display_txt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User Profile"));
+        display_txtPanel.setViewportView(display_txt);
 
-        bg_panel.add(jScrollPane2);
-        jScrollPane2.setBounds(40, 70, 383, 263);
+        bg_panel.add(display_txtPanel);
+        display_txtPanel.setBounds(40, 70, 383, 263);
 
         getContentPane().add(bg_panel);
         bg_panel.setBounds(80, 50, 600, 370);
@@ -245,6 +217,16 @@ public class UserMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_editProfile_buttonMouseClicked
 
+    private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        // TODO add your handling code here:
+        about_txt.setText(""); 
+        age_txt.setText(""); 
+        userName_txt.setText(""); 
+        gender_cb.setSelectedIndex(0);
+        editProfile_frame.setVisible(false);
+        
+    }//GEN-LAST:event_cancel_buttonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -281,26 +263,27 @@ public class UserMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea Address_txt;
+    private javax.swing.JLabel about_label;
+    private javax.swing.JTextArea about_txt;
+    private javax.swing.JLabel age_label;
     private javax.swing.JFormattedTextField age_txt;
     private javax.swing.JButton allPost_button;
     private javax.swing.JLabel bg_label;
     private javax.swing.JPanel bg_panel;
     private javax.swing.JButton cancel_button;
-    private javax.swing.JTextPane display_textPane1;
+    private javax.swing.JTextPane display_txt;
+    private javax.swing.JScrollPane display_txtPanel;
+    private javax.swing.JLabel editProfile_bg_label;
     private javax.swing.JButton editProfile_button;
     private javax.swing.JInternalFrame editProfile_frame;
-    private javax.swing.JFormattedTextField gender_txt;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane editProfile_txtpanel;
+    private javax.swing.JComboBox<String> gender_cb;
+    private javax.swing.JLabel gender_label;
     private javax.swing.JButton logout_button;
     private javax.swing.JButton msg_button;
     private javax.swing.JButton myPost_button;
+    private javax.swing.JLabel name_label;
+    private javax.swing.JLabel plain_label;
     private javax.swing.JButton save_button;
     private javax.swing.JLabel select_uID;
     private javax.swing.JLabel userID_label;
