@@ -44,10 +44,10 @@ public class UserMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(205, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
 
         pack();
