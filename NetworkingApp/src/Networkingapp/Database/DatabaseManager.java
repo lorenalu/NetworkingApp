@@ -72,8 +72,8 @@ public class DatabaseManager {
         }
     }
     
-    // After finishing with the Statement
-    // DO NOT forget to close it using stmt.close()
+    // After finishing with the Statement in a field
+    // DO NOT forget to close it using stmt.close() before to use it again
     // Chinese Explanation https://zhidao.baidu.com/question/220965657
     
     // Execute a query
@@ -123,9 +123,6 @@ public class DatabaseManager {
    // or when you need to use truly dynamic SQL.
     
     
-    
-    
-   
     public ResultSet queryWithPrepareStatement(String query, Object... param) throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
         prepareStatement(statement, param);

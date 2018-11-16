@@ -25,6 +25,7 @@ DROP TABLE Supervisor;
 DROP TABLE Message;
 DROP TABLE App_User;
 
+commit;
 
 CREATE TABLE App_User(
 user_ID VARCHAR(8) PRIMARY KEY,
@@ -527,7 +528,7 @@ insert into Supervise values
 ('sp000010', 'u0001010', 'post1010');
 
 
-
+commit;
 
 
 
