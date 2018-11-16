@@ -33,85 +33,90 @@ public class DatabaseLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        bg_panel = new javax.swing.JPanel();
+        username_label = new javax.swing.JLabel();
+        password_label = new javax.swing.JLabel();
+        login_button = new javax.swing.JButton();
+        oracle_password = new javax.swing.JPasswordField();
+        oracle_username = new javax.swing.JFormattedTextField();
+        bg_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oracle Database User Login");
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        bg_panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Oracle Username:");
+        username_label.setText("Oracle Username:");
 
-        jLabel2.setText("Oracle Password:");
+        password_label.setText("Oracle Password:");
 
-        jButton1.setText("Login");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
-        jPasswordField1.setText("a12345678");
-        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        login_button.setText("Login");
+        login_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPasswordField1MousePressed(evt);
+                login_buttonMousePressed(evt);
             }
         });
 
-        jFormattedTextField1.setText("ora_a1a1a");
-        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        oracle_password.setText("a12345678");
+        oracle_password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                oracle_passwordMousePressed(evt);
+            }
+        });
+
+        oracle_username.setText("ora_a1a1a");
+        oracle_username.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jFormattedTextField1MouseClicked(evt);
+                oracle_usernameMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jFormattedTextField1MouseEntered(evt);
+                oracle_usernameMouseEntered(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout bg_panelLayout = new javax.swing.GroupLayout(bg_panel);
+        bg_panel.setLayout(bg_panelLayout);
+        bg_panelLayout.setHorizontalGroup(
+            bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_panelLayout.createSequentialGroup()
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_panelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(username_label)
+                            .addComponent(password_label))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(oracle_username)
+                            .addComponent(oracle_password, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
+                    .addGroup(bg_panelLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jButton1)))
+                        .addComponent(login_button)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        bg_panelLayout.setVerticalGroup(
+            bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_panelLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(username_label)
+                    .addComponent(oracle_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(password_label)
+                    .addComponent(oracle_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(login_button)
                 .addGap(20, 20, 20))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(40, 40, 270, 160);
+        getContentPane().add(bg_panel);
+        bg_panel.setBounds(40, 40, 270, 160);
+
+        bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/oracle-login.png"))); // NOI18N
+        getContentPane().add(bg_label);
+        bg_label.setBounds(0, 0, 350, 240);
 
         setSize(new java.awt.Dimension(346, 263));
         setLocationRelativeTo(null);
@@ -128,11 +133,22 @@ public class DatabaseLogin extends javax.swing.JFrame {
     
     
   
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void oracle_usernameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oracle_usernameMouseEntered
         // TODO add your handling code here:
-        
+    }//GEN-LAST:event_oracle_usernameMouseEntered
+
+    private void oracle_usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oracle_usernameMouseClicked
+        oracle_username.setText("");
+    }//GEN-LAST:event_oracle_usernameMouseClicked
+
+    private void oracle_passwordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oracle_passwordMousePressed
+        oracle_password.setText("");
+    }//GEN-LAST:event_oracle_passwordMousePressed
+
+    private void login_buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_buttonMousePressed
+        // TODO add your handling code here:
         DatabaseManager dbm = DatabaseManager.getInstance();
-        if(dbm.startConnection(jFormattedTextField1.getText(), jPasswordField1.getText())){
+        if(dbm.startConnection(oracle_username.getText(), oracle_password.getText())){
             // if the username and password are valid,
             // remove the login dialog
             dispose();
@@ -144,22 +160,10 @@ public class DatabaseLogin extends javax.swing.JFrame {
                 dispose();
                 System.exit(-1);
             } else {
-                jPasswordField1.setText("");
+                oracle_password.setText("");
             }
         }
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jFormattedTextField1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1MouseEntered
-
-    private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
-        jFormattedTextField1.setText("");
-    }//GEN-LAST:event_jFormattedTextField1MouseClicked
-
-    private void jPasswordField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MousePressed
-        jPasswordField1.setText("");
-    }//GEN-LAST:event_jPasswordField1MousePressed
+    }//GEN-LAST:event_login_buttonMousePressed
 
     /**
      * @param args the command line arguments
@@ -199,11 +203,12 @@ public class DatabaseLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel bg_label;
+    private javax.swing.JPanel bg_panel;
+    private javax.swing.JButton login_button;
+    private javax.swing.JPasswordField oracle_password;
+    private javax.swing.JFormattedTextField oracle_username;
+    private javax.swing.JLabel password_label;
+    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 }

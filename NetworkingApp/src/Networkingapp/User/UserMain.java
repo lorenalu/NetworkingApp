@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Networkingapp;
+package Networkingapp.User;
 
 /**
  *
@@ -27,31 +27,166 @@ public class UserMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editProfile_frame = new javax.swing.JInternalFrame();
         jButton1 = new javax.swing.JButton();
+        bg_panel = new javax.swing.JPanel();
+        myPost_button = new javax.swing.JButton();
+        allPost_button = new javax.swing.JButton();
+        editProfile_button = new javax.swing.JButton();
+        msg_button = new javax.swing.JButton();
+        userID_label = new javax.swing.JLabel();
+        select_uID = new javax.swing.JLabel();
+        logout_button = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        display_textPane1 = new javax.swing.JTextPane();
+        bg_label = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        editProfile_frame.setVisible(true);
 
         jButton1.setText("jButton1");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+        javax.swing.GroupLayout editProfile_frameLayout = new javax.swing.GroupLayout(editProfile_frame.getContentPane());
+        editProfile_frame.getContentPane().setLayout(editProfile_frameLayout);
+        editProfile_frameLayout.setHorizontalGroup(
+            editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editProfile_frameLayout.createSequentialGroup()
+                .addGap(190, 190, 190)
                 .addComponent(jButton1)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+        editProfile_frameLayout.setVerticalGroup(
+            editProfile_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editProfile_frameLayout.createSequentialGroup()
+                .addContainerGap(297, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(66, 66, 66))
+                .addGap(23, 23, 23))
         );
 
-        pack();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("User Main Page");
+        setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().setLayout(null);
+
+        bg_panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        myPost_button.setText("My Post");
+        myPost_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myPost_buttonMouseClicked(evt);
+            }
+        });
+
+        allPost_button.setText("All Post");
+        allPost_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                allPost_buttonMouseClicked(evt);
+            }
+        });
+
+        editProfile_button.setText("Edit Profile");
+        editProfile_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editProfile_buttonMouseClicked(evt);
+            }
+        });
+
+        msg_button.setText("Message");
+        msg_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                msg_buttonMouseClicked(evt);
+            }
+        });
+
+        userID_label.setText("User ID:");
+
+        select_uID.setText("jLabel2");
+
+        logout_button.setText("Logout");
+
+        display_textPane1.setEditable(false);
+        display_textPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User Profile"));
+        jScrollPane2.setViewportView(display_textPane1);
+
+        javax.swing.GroupLayout bg_panelLayout = new javax.swing.GroupLayout(bg_panel);
+        bg_panel.setLayout(bg_panelLayout);
+        bg_panelLayout.setHorizontalGroup(
+            bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_panelLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_panelLayout.createSequentialGroup()
+                        .addComponent(userID_label)
+                        .addGap(18, 18, 18)
+                        .addComponent(select_uID)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(bg_panelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(msg_button)
+                            .addComponent(editProfile_button)
+                            .addComponent(allPost_button)
+                            .addComponent(myPost_button)
+                            .addComponent(logout_button))
+                        .addGap(29, 29, 29))))
+        );
+        bg_panelLayout.setVerticalGroup(
+            bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_panelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userID_label)
+                    .addComponent(select_uID))
+                .addGap(18, 18, 18)
+                .addGroup(bg_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(bg_panelLayout.createSequentialGroup()
+                        .addComponent(myPost_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(allPost_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(msg_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(editProfile_button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logout_button))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(bg_panel);
+        bg_panel.setBounds(80, 50, 611, 359);
+
+        bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/User-Main-background.jpg"))); // NOI18N
+        getContentPane().add(bg_label);
+        bg_label.setBounds(0, 0, 760, 460);
+
+        setSize(new java.awt.Dimension(760, 482));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void myPost_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myPost_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new MyPost().setVisible(true);
+        
+    }//GEN-LAST:event_myPost_buttonMouseClicked
+
+    private void allPost_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allPost_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new AllPost().setVisible(true);
+    }//GEN-LAST:event_allPost_buttonMouseClicked
+
+    private void msg_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_msg_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new Message().setVisible(true);
+    }//GEN-LAST:event_msg_buttonMouseClicked
+
+    private void editProfile_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfile_buttonMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_editProfile_buttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,6 +224,18 @@ public class UserMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allPost_button;
+    private javax.swing.JLabel bg_label;
+    private javax.swing.JPanel bg_panel;
+    private javax.swing.JTextPane display_textPane1;
+    private javax.swing.JButton editProfile_button;
+    private javax.swing.JInternalFrame editProfile_frame;
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton logout_button;
+    private javax.swing.JButton msg_button;
+    private javax.swing.JButton myPost_button;
+    private javax.swing.JLabel select_uID;
+    private javax.swing.JLabel userID_label;
     // End of variables declaration//GEN-END:variables
 }
