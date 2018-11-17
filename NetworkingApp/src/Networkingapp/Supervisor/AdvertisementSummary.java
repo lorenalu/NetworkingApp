@@ -23,7 +23,7 @@ public class AdvertisementSummary extends javax.swing.JFrame {
     /**
      * Creates new form AdvertisementSummary
      */
-    public AdvertisementSummary() throws SQLException {
+    public AdvertisementSummary()  {
         initComponents();
         Content();
     }
@@ -32,31 +32,40 @@ public class AdvertisementSummary extends javax.swing.JFrame {
     
     
     
-    public void Content() throws SQLException, SQLException{
-        try {
+    public void Content(){
+       
         allContent= new DefaultListModel();
-        String selectCategory ="create view AdvertisementContent as select a.advertisement_pay,a.advertisement_brand,p.user_ID\n" +
-"from Post p, Advertisement a";
-        ResultSet rs = null;
         
+        String selectCategory ="create view AdvertisementContent as select a.advertisement_pay,"
+                                      + "a.advertisement_brand, p.user_ID " 
+                                        + "from Post p, Advertisement a";           
+      
         
-        rs = DatabaseManager.getInstance().query(selectCategory);
-    
-            while (rs.next()){
+        ResultSet rs;
+        try {
+           
+            DatabaseManager.getInstance().update(selectCategory);
+            rs = DatabaseManager.getInstance().query("select * from AdvertisementContent");
+            
+             while (rs.next()){
                 String a = rs.getString("user_ID");
                 String b= rs.getString("advertisement_pay");
                 String c= rs.getString("advertisement_brand");
                 String str= a+ "                 "+ b +"                "+ c;
                 allContent.addElement(str);
             
-        } 
+            } 
+            DatabaseManager.getInstance().update("drop view AdvertisementContent");
             jList1.setModel(allContent);
             jList1.setVisible(true);
-        }
-        catch (SQLException ex) {
+            
+            
+        } catch (SQLException ex) {
             Logger.getLogger(AdvertisementSummary.class.getName()).log(Level.SEVERE, null, ex);
         }
     
+           
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,11 +81,13 @@ public class AdvertisementSummary extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setUndecorated(true);
 
         jLabel1.setText("AdvertisementSummary");
 
-        jLabel2.setText("UserInfo                  AdvertisementBrand       AdvertisementFee");
+        jLabel2.setText("UserInfo                   AdvertisementFee                  AdvertisementBrand");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -88,13 +99,11 @@ public class AdvertisementSummary extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,54 +113,20 @@ public class AdvertisementSummary extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdvertisementSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdvertisementSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdvertisementSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdvertisementSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-              
-                    new AdvertisementSummary().setVisible(true);
-                
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    void setVisible() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

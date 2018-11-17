@@ -7,6 +7,7 @@ package Networkingapp.Database;
 
 import Networkingapp.*;
 import Networkingapp.Supervisor.AdvertisementCategories;
+import Networkingapp.Supervisor.AdvertisementSummary;
 import Networkingapp.Supervisor.MessagerQuery;
 import Networkingapp.Supervisor.SupervisorMain;
 import java.sql.Connection;
@@ -133,7 +134,8 @@ public class DatabaseLogin extends javax.swing.JFrame {
   
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+        jFormattedTextField1.setText("ora_a5q0b");
+        jPasswordField1.setText("a54558151");
         DatabaseManager dbm = DatabaseManager.getInstance();
         if(dbm.startConnection(jFormattedTextField1.getText(), jPasswordField1.getText())){
             // if the username and password are valid,
@@ -141,6 +143,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
             dispose();
             //new FirstPage().setVisible(true);
             //new SupervisorMain().setVisible(true);
+            //new AdvertisementSummary().setVisible(true);
             new MessagerQuery().setVisible(true);
            
         }

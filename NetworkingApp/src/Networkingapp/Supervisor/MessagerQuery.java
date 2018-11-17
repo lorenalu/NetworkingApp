@@ -30,11 +30,9 @@ public class MessagerQuery extends javax.swing.JFrame {
         initComponents();
         myPostsList.setVisible(false);
         
-        try {
-            initialAsc();
-        } catch (SQLException ex) {
-            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+        initialAsc();
+        
         allPostsList.setModel(allAsc);
         
         initialDesc();
@@ -43,13 +41,13 @@ public class MessagerQuery extends javax.swing.JFrame {
 
     
     
-     private void initialAsc() throws SQLException{
+     private void initialAsc(){
         allAsc = new DefaultListModel();
         String selectPostStr = "select send_message_writerID, send_message_receiverID, count(*) from Send_Message group by send_message_writerID, send_message_receiverID order by count(*) ASC";
         ResultSet rs;
-        
+        try{
             rs = DatabaseManager.getInstance().query(selectPostStr);
-        try {
+      
             while (rs.next()){
                 String smw = rs.getString("send_message_writerID");
                 String smr = rs.getString("send_message_receiverID");
@@ -57,37 +55,31 @@ public class MessagerQuery extends javax.swing.JFrame {
                 String str = smw+"              "+smr+"                 "+count;
                 allAsc.addElement(str);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+        catch (SQLException ex) {
+            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }     
     }
      
      
     private void initialDesc(){
      
-            allAsc = new DefaultListModel();
-            String selectPostStr = "select send_message_writerID, send_message_receiverID, count(*) from Send_Message group by send_message_writerID, send_message_receiverID order by count(*) DESC";
-            ResultSet rs = null;
-            
+            allDesc = new DefaultListModel();
+            String selectPostStr = "select send_message_writerID, send_message_receiverID, count(*) from Send_Message group by send_message_writerID, send_message_receiverID order by count(*) DESC";    
+            ResultSet rs;
         try {
             rs = DatabaseManager.getInstance().query(selectPostStr);
-        } catch (SQLException ex) {
-            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             while (rs.next()){
                 String smw = rs.getString("send_message_writerID");
                 String smr = rs.getString("send_message_receiverID");
                 String count = rs.getString("count(*)");
                 String str = smw+"              "+smr+"                 "+count;
-                allAsc.addElement(str);
+                allDesc.addElement(str);
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-     
     }
         
     
@@ -109,7 +101,7 @@ public class MessagerQuery extends javax.swing.JFrame {
         ViewMyPostButton = new javax.swing.JButton();
         ViewAllPostButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel6.setText("Message");
