@@ -25,11 +25,7 @@ import java.util.logging.Logger;
 public class PostConnector {
     
     private static String postID;
-
-    
-    //public static SimpleDateFormat dtf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-
-    
+    //public static SimpleDateFormat dtf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss")   
     private static final String ALPHA_NUMERIC_STRING = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static String randomAlphaNumeric(int count) {
         StringBuilder builder = new StringBuilder();
@@ -47,6 +43,39 @@ public class PostConnector {
         
         return 0;
     }
+    
+    public static ResultSet showPost(String select){
+        ResultSet res = null;
+        String sl = select.trim();
+        
+        try {
+            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            res = dbm.queryWithPrepareStatement ("SELECT "+ sl + " FROM post");
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return res;
+    }
+    
+        public static String showSelectedContent(String selectPostID){
+        ResultSet res = null;
+        String slp = selectPostID.trim();
+        String sc = "There is no Content";
+        try {
+            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            res = dbm.queryWithPrepareStatement ("SELECT post_content FROM post WHERE post_ID = ?", slp);
+
+            if(res.next()){
+                sc = res.getString("post_content");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sc;
+    }
+   
     
     public static int createPost(String pTitle, String pContent){
 //        LocalDateTime now = LocalDateTime.now();
