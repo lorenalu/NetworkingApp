@@ -405,6 +405,35 @@ insert into Post_Category values
 
 insert into Post_Category values
 ( 'post0010', 'Pet');
+insert into Post_Category values
+( 'post1001', 'Weather');
+
+insert into Post_Category values
+( 'post1002', 'Weather');
+
+insert into Post_Category values
+( 'post1003', 'Pet');
+
+insert into Post_Category values
+( 'post1004', 'Children');
+
+insert into Post_Category values
+( 'post1005', 'Pet');
+
+insert into Post_Category values
+( 'post1006', 'Pet');
+
+insert into Post_Category values
+( 'post1007', 'Children');
+
+insert into Post_Category values
+( 'post1008', 'Parents');
+
+insert into Post_Category values
+( 'post1009', 'Pet');
+
+insert into Post_Category values
+( 'post1010', 'Pet');
 
 insert into Advertisement values
 ('post1001', 1000000,'UBC CPSC department');

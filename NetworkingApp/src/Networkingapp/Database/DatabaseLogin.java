@@ -6,6 +6,9 @@
 package Networkingapp.Database;
 
 import Networkingapp.*;
+import Networkingapp.Supervisor.AdvertisementCategories;
+import Networkingapp.Supervisor.MessagerQuery;
+import Networkingapp.Supervisor.SupervisorMain;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -136,7 +139,10 @@ public class DatabaseLogin extends javax.swing.JFrame {
             // if the username and password are valid,
             // remove the login dialog
             dispose();
-            new FirstPage().setVisible(true);
+            //new FirstPage().setVisible(true);
+            //new SupervisorMain().setVisible(true);
+            new MessagerQuery().setVisible(true);
+           
         }
         else{
             loginAttempts++;

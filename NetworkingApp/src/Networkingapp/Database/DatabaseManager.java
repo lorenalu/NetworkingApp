@@ -103,6 +103,11 @@ public class DatabaseManager {
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(updateString);
     }
+    
+    public int updateStatement (String query)throws SQLException{
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(query);
+    }
 
     private static void DatabaseLoginInfoSetup(String user, String pass) {
         username = user;
