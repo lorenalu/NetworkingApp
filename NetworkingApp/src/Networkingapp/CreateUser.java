@@ -5,17 +5,71 @@
  */
 package Networkingapp;
 
+import Networkingapp.Database.DatabaseManager;
+import java.sql.*;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 /**
  *
- * @author Linda <lujiecanada@gmail.com>
+ * @author Jade
  */
 public class CreateUser extends javax.swing.JFrame {
+     private Connection con;
+//    String newUserID;
+//    String newUserPassword;
+//    String newUserName;
+//    String newUserAge;
+//    String newUserLocation;
+//    String newUserGender;
 
     /**
      * Creates new form CreateUser
      */
     public CreateUser() {
         initComponents();
+        
+       
+    }
+    
+    private void createNewUser(String uId, String upassword) {
+        if (uId.length() > 7) {
+            
+        }
+        System.out.println("insert into App_User values ('u"
+                + uId + "','" + upassword + "')");
+        String createU = "insert into App_User values ('u"
+                + uId + "','" + upassword + "')";
+        // uId = "u" + uId;
+        DatabaseManager dbm = DatabaseManager.getInstance();
+        try {
+            dbm.updateStatement(createU);
+            
+            } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void createNewUserProfile(String uid, String uName, String uAge, String uLoc, String uGender) {
+        DatabaseManager dbm = DatabaseManager.getInstance();
+        String profileID = "p" + uid;
+        uid = "u" + uid;
+        String createProfile = "INSERT INTO PROFILE values('" + profileID + "','" + uName 
+                + "','" + uAge + "','" + uLoc + "','" + uGender + "','" + uid + "')";
+        System.out.println("INSERT INTO PROFILE values('" + profileID + "','" + uName 
+                + "','" + uAge + "','" + uLoc + "','" + uGender + "','" + uid + "')");
+        try {
+//            dbm.updateWithPrepareStatement(
+//                    "INSERT INTO Profiles(profile_ID,profile_name,profile_age,profile_location,profile_gender,user_ID)" 
+//                    + "VALUES(?,?)" , profileID, uName, uAge, uLoc, uGender, uid);
+            //System.out.println();
+            dbm.updateStatement(createProfile);
+            } 
+        catch (SQLException ex) {
+            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,167 +82,231 @@ public class CreateUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        uName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        uHometown = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        uAge = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        uPassword = new javax.swing.JPasswordField();
+        uGender = new javax.swing.JComboBox<>();
+        signUpButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        UserIDjText = new javax.swing.JTextField();
 
         jLabel1.setText("Welcome, new friend!");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to new world!");
         setBackground(java.awt.Color.pink);
+        getContentPane().setLayout(null);
 
-        jTextField1.setText("How should we call you?");
+        uName.setText("How should we call you?");
+        uName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uNameFocusGained(evt);
+            }
+        });
+        uName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                uNameMouseClicked(evt);
+            }
+        });
+        uName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uNameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(uName);
+        uName.setBounds(310, 119, 203, 36);
 
         jLabel2.setText("Your Password*:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(156, 87, 102, 16);
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(805, 301, 0, 0);
 
         jLabel4.setText("Your Name:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(169, 127, 73, 16);
 
-        jTextField3.setText("Where are you from?");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+        uHometown.setText("Where are you from?");
+        uHometown.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uHometownFocusGained(evt);
             }
         });
+        uHometown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uHometownActionPerformed(evt);
+            }
+        });
+        getContentPane().add(uHometown);
+        uHometown.setBounds(310, 209, 203, 36);
 
         jLabel5.setText("Your Age:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(181, 171, 61, 16);
 
-        jTextField4.setText("How old are you?");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+        uAge.setText("How old are you?");
+        uAge.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uAgeFocusGained(evt);
             }
         });
+        uAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uAgeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(uAge);
+        uAge.setBounds(310, 161, 203, 36);
 
         jLabel6.setText("Your Location:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(156, 219, 91, 16);
 
         jLabel7.setText("Your Gender:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(166, 280, 81, 16);
 
-        jPasswordField1.setText("jPasswordField1");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male", "Secret" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        uPassword.setText("jPasswordField1");
+        uPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uPasswordFocusGained(evt);
             }
         });
+        getContentPane().add(uPassword);
+        uPassword.setBounds(310, 82, 203, 26);
 
-        jButton1.setText("Sign Up!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male", "Secret" }));
+        uGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                uGenderActionPerformed(evt);
             }
         });
+        getContentPane().add(uGender);
+        uGender.setBounds(363, 276, 100, 27);
+
+        signUpButton.setText("Sign Up!");
+        signUpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpButtonMouseClicked(evt);
+            }
+        });
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(signUpButton);
+        signUpButton.setBounds(275, 334, 96, 29);
 
         jLabel8.setText("Hello New Friend! Tell us about yourself");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(84, 0, 335, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4))
-                                        .addGap(16, 16, 16)))
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50))
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(148, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel4)
-                                .addGap(12, 12, 12))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
-                .addComponent(jButton1)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
+        jLabel9.setText("Your User Id*:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(156, 48, 87, 16);
+
+        UserIDjText.setText("7 digits");
+        UserIDjText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UserIDjTextFocusGained(evt);
+            }
+        });
+        UserIDjText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UserIDjTextMouseClicked(evt);
+            }
+        });
+        UserIDjText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserIDjTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(UserIDjText);
+        UserIDjText.setBounds(310, 48, 203, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void uAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uAgeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_uAgeActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void uGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_uGenderActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void uHometownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uHometownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_uHometownActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void uNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uNameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uNameMouseClicked
+
+    private void UserIDjTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserIDjTextMouseClicked
+        // TODO add your handling code here:
+        UserIDjText.setText("");
+    }//GEN-LAST:event_UserIDjTextMouseClicked
+
+    private void UserIDjTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIDjTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserIDjTextActionPerformed
+
+    private void UserIDjTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserIDjTextFocusGained
+        // TODO add your handling code here:
+        // jtextField.setText(""); 
+        UserIDjText.setText("");
+    }//GEN-LAST:event_UserIDjTextFocusGained
+
+    private void uNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uNameActionPerformed
+
+    private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
+        // TODO add your handling code here:
+        String iUloc = uHometown.getText();
+        String iUID = UserIDjText.getText();
+        String iUpassword = String.valueOf(uPassword.getPassword());
+        String iUname = uName.getText();
+        String iUage = uAge.getText();
+        String iUgender = String.valueOf(uGender.getSelectedItem());         
+        createNewUser(iUID, iUpassword);
+        createNewUserProfile (iUID,iUname , iUage, iUloc, iUgender);
+        System.out.println(iUID + " " + iUpassword + " "+ iUname + iUgender);
+    }//GEN-LAST:event_signUpButtonMouseClicked
+
+    private void uPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uPasswordFocusGained
+        // TODO add your handling code here:
+        uPassword.setText("");
+    }//GEN-LAST:event_uPasswordFocusGained
+
+    private void uNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uNameFocusGained
+        uName.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uNameFocusGained
+
+    private void uAgeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uAgeFocusGained
+        // TODO add your handling code here:
+        uAge.setText("");
+    }//GEN-LAST:event_uAgeFocusGained
+
+    private void uHometownFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uHometownFocusGained
+        // TODO add your handling code here:
+        uHometown.setText("");
+    }//GEN-LAST:event_uHometownFocusGained
 
     /**
      * @param args the command line arguments
@@ -226,8 +344,7 @@ public class CreateUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField UserIDjText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -236,9 +353,12 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton signUpButton;
+    private javax.swing.JTextField uAge;
+    private javax.swing.JComboBox<String> uGender;
+    private javax.swing.JTextField uHometown;
+    private javax.swing.JTextField uName;
+    private javax.swing.JPasswordField uPassword;
     // End of variables declaration//GEN-END:variables
 }
