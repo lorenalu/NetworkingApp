@@ -142,9 +142,9 @@ public class DatabaseLogin extends javax.swing.JFrame {
             // remove the login dialog
             dispose();
             //new FirstPage().setVisible(true);
-            //new SupervisorMain().setVisible(true);
+            new SupervisorMain().setVisible(true);
             //new AdvertisementSummary().setVisible(true);
-            new MessagerQuery().setVisible(true);
+            //new MessagerQuery().setVisible(true);
            
         }
         else{
