@@ -63,6 +63,11 @@ public class CreateUser extends javax.swing.JFrame {
                 + "','" + uAge + "','" + uLoc + "','" + uGender + "','" + uid + "')");
         try {
             dbm.updateStatement(createProfile);
+            JFrame frame = new JFrame();
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                JOptionPane.showMessageDialog(frame,  "Welcome! "+uName, "Success", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            new FirstPage().setVisible(true);
             } 
         catch (SQLException ex) {
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,6 +110,7 @@ public class CreateUser extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to new world!");
         setBackground(new java.awt.Color(255, 255, 255));
+        setSize(new java.awt.Dimension(1089, 436));
         getContentPane().setLayout(null);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(805, 301, 0, 0);
@@ -337,6 +343,7 @@ public class CreateUser extends javax.swing.JFrame {
         jPanel4.setBounds(130, 80, 680, 360);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void uAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uAgeActionPerformed
