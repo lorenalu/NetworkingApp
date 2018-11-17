@@ -5,10 +5,9 @@
  */
 package Networkingapp.Database;
 
-import Networkingapp.*;
+
+import Networkingapp.Login;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.swing.JFrame;
 
 /**
@@ -125,9 +124,6 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
     
     
-    
-    private Connection con;
-
     // user is allowed 3 login attempts
     private int loginAttempts = 0;
     private JFrame mainFrame;
@@ -144,12 +140,16 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
     private void login_buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_buttonMousePressed
         // TODO add your handling code here:
-        DatabaseManager dbm = DatabaseManager.getInstance();
+        
+//        oracle_password.setText(""); // TestDelete
+//        oracle_username.setText(""); // TestDelete
+        
+        OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
         if(dbm.startConnection(oracle_username.getText(), oracle_password.getText())){
             // if the username and password are valid,
             // remove the login dialog
             dispose();
-            new FirstPage().setVisible(true);
+            new Login().setVisible(true);
         }
         else{
             loginAttempts++;
