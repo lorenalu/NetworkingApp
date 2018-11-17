@@ -39,7 +39,7 @@ public class DatabaseManager {
         System.out.println("Connecting to Oracle database...");
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@dbhost.ugrad.cs.ubc.ca:1522:ug", username, password);
-            con.setAutoCommit(true);
+            con.setAutoCommit(true);  
             System.out.println("Connected to Oracle!");
             return true;
         } catch (SQLException e) {
@@ -54,7 +54,11 @@ public class DatabaseManager {
         return statement.executeQuery();
     }
 
-
+    public int updateStatement (String query)throws SQLException{
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(query);
+    }
+    
     public int updateWithPrepareStatement(String query, Object... param) throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
         prepareStatement(statement, param);
