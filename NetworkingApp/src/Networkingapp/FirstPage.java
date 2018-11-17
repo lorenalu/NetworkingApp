@@ -127,7 +127,7 @@ public class FirstPage extends javax.swing.JFrame {
         this.setVisible(false);
         CreateUser createUser = new CreateUser();
         createUser.setVisible(true);
-        createUser.setSize(620,370);
+        createUser.setSize(680,450);
         createUser.setLocationRelativeTo(null);
     }//GEN-LAST:event_signUpButtonMouseClicked
 

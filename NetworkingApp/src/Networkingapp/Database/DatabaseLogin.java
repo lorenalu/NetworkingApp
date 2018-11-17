@@ -136,8 +136,8 @@ public class DatabaseLogin extends javax.swing.JFrame {
             // if the username and password are valid,
             // remove the login dialog
             dispose();
-            //new FirstPage().setVisible(true);
-            new CreateUser().setVisible(true);
+            new FirstPage().setVisible(true);
+            // new CreateUser().setVisible(true);
         }
         else{
             loginAttempts++;

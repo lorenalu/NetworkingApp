@@ -7,7 +7,7 @@ package Networkingapp;
 
 import Networkingapp.Database.DatabaseManager;
 import Networkingapp.Supervisor.SupervisorMain;
-import Networkingapp.User.UserMain;
+import Networkingapp.UserMain;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -208,7 +208,7 @@ public class Login extends javax.swing.JFrame {
                 
                     if (!rs2.isBeforeFirst()){
                     // general user
-                     new UserMain(userID).setVisible(true);
+                     new UserMain().setVisible(true);
                     }else{
                      //supervisor
                      new SupervisorMain(userID).setVisible(true);
