@@ -44,13 +44,24 @@ public class PostConnector {
         return 0;
     }
     
-    public static ResultSet showPost(String select){
+    public static ResultSet showAllPost(){
         ResultSet res = null;
-        String sl = select.trim();
         
         try {
             OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
-            res = dbm.queryWithPrepareStatement ("SELECT "+ sl + " FROM post");
+            res = dbm.queryWithPrepareStatement ("SELECT * FROM post");
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return res;
+    }
+    public static ResultSet showMyPost(){
+        ResultSet res = null;
+        
+        try {
+            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE user_ID = ?", UserConnector.getUserID());
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,7 +69,9 @@ public class PostConnector {
         return res;
     }
     
-        public static String showSelectedContent(String selectPostID){
+    
+    
+    public static String showSelectedContent(String selectPostID){
         ResultSet res = null;
         String slp = selectPostID.trim();
         String sc = "There is no Content";
