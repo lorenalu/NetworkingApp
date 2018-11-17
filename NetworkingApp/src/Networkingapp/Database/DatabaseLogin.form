@@ -106,7 +106,7 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordField1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="a12345678"/>
+            <Property name="text" type="java.lang.String" value="a70942206"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPasswordField1MousePressed"/>
@@ -114,7 +114,7 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ora_a1a1a"/>
+            <Property name="text" type="java.lang.String" value="ora_y9p1b"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jFormattedTextField1MouseClicked"/>

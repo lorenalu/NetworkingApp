@@ -39,13 +39,18 @@ public class DatabaseManager {
         System.out.println("Connecting to Oracle database...");
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@dbhost.ugrad.cs.ubc.ca:1522:ug", username, password);
-            con.setAutoCommit(true);  
+            con.setAutoCommit(true);
             System.out.println("Connected to Oracle!");
             return true;
         } catch (SQLException e) {
             System.out.println("Connection failure: " + e.getMessage());
             return false;
         }
+    }
+    
+    public PreparedStatement preparedStatement(String query) throws SQLException{
+        PreparedStatement statement = con.prepareStatement(query);
+        return statement;
     }
 
     public ResultSet queryWithPrepareStatement(String query, Object... param) throws SQLException {
@@ -54,15 +59,16 @@ public class DatabaseManager {
         return statement.executeQuery();
     }
 
-    public int updateStatement (String query)throws SQLException{
-        Statement stmt = con.createStatement();
-        return stmt.executeUpdate(query);
-    }
-    
+
     public int updateWithPrepareStatement(String query, Object... param) throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
         prepareStatement(statement, param);
         return statement.executeUpdate();
+    }
+    
+    public int updateStatement (String query)throws SQLException{
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(query);
     }
 
     private void prepareStatement(PreparedStatement ps, Object[] parameters) throws SQLException {
@@ -93,6 +99,7 @@ public class DatabaseManager {
                 // Boolean
                 ps.setBoolean(i+1, ((Boolean)parameters[i]).booleanValue());
             } else {
+                System.out.println(parameters[i].getClass().getSimpleName());
                 throw new SQLException("Invalid parameter type: "+parameters[i].getClass().getSimpleName());
             }
         }
