@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.*;
 /**
  *
  * @author Jade
@@ -34,9 +35,6 @@ public class CreateUser extends javax.swing.JFrame {
     }
     
     private void createNewUser(String uId, String upassword) {
-        if (uId.length() > 7) {
-            
-        }
         System.out.println("insert into App_User values ('u"
                 + uId + "','" + upassword + "')");
         String createU = "insert into App_User values ('u"
@@ -49,6 +47,9 @@ public class CreateUser extends javax.swing.JFrame {
             } 
         
         catch (SQLException ex) {
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            JOptionPane.showMessageDialog(frame, "This User ID has already been used", "ERROR", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -61,10 +62,6 @@ public class CreateUser extends javax.swing.JFrame {
         System.out.println("INSERT INTO PROFILE values('" + profileID + "','" + uName 
                 + "','" + uAge + "','" + uLoc + "','" + uGender + "','" + uid + "')");
         try {
-//            dbm.updateWithPrepareStatement(
-//                    "INSERT INTO Profiles(profile_ID,profile_name,profile_age,profile_location,profile_gender,user_ID)" 
-//                    + "VALUES(?,?)" , profileID, uName, uAge, uLoc, uGender, uid);
-            //System.out.println();
             dbm.updateStatement(createProfile);
             } 
         catch (SQLException ex) {
@@ -82,137 +79,44 @@ public class CreateUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        uName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        uHometown = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        uGender = new javax.swing.JComboBox<>();
+        UserIDjText = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        uPassword = new javax.swing.JPasswordField();
         uAge = new javax.swing.JTextField();
+        uHometown = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        uPassword = new javax.swing.JPasswordField();
-        uGender = new javax.swing.JComboBox<>();
+        uName = new javax.swing.JTextField();
         signUpButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        UserIDjText = new javax.swing.JTextField();
 
         jLabel1.setText("Welcome, new friend!");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to new world!");
-        setBackground(java.awt.Color.pink);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
-
-        uName.setText("How should we call you?");
-        uName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                uNameFocusGained(evt);
-            }
-        });
-        uName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                uNameMouseClicked(evt);
-            }
-        });
-        uName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uNameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(uName);
-        uName.setBounds(310, 119, 203, 36);
-
-        jLabel2.setText("Your Password*:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(156, 87, 102, 16);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(805, 301, 0, 0);
 
-        jLabel4.setText("Your Name:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(169, 127, 73, 16);
-
-        uHometown.setText("Where are you from?");
-        uHometown.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                uHometownFocusGained(evt);
-            }
-        });
-        uHometown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uHometownActionPerformed(evt);
-            }
-        });
-        getContentPane().add(uHometown);
-        uHometown.setBounds(310, 209, 203, 36);
-
-        jLabel5.setText("Your Age:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(181, 171, 61, 16);
-
-        uAge.setText("How old are you?");
-        uAge.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                uAgeFocusGained(evt);
-            }
-        });
-        uAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uAgeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(uAge);
-        uAge.setBounds(310, 161, 203, 36);
-
-        jLabel6.setText("Your Location:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(156, 219, 91, 16);
-
-        jLabel7.setText("Your Gender:");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(166, 280, 81, 16);
-
-        uPassword.setText("jPasswordField1");
-        uPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                uPasswordFocusGained(evt);
-            }
-        });
-        getContentPane().add(uPassword);
-        uPassword.setBounds(310, 82, 203, 26);
-
-        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male", "Secret" }));
+        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Secret", "Female", "Male", "Alien" }));
         uGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uGenderActionPerformed(evt);
             }
         });
         getContentPane().add(uGender);
-        uGender.setBounds(363, 276, 100, 27);
-
-        signUpButton.setText("Sign Up!");
-        signUpButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                signUpButtonMouseClicked(evt);
-            }
-        });
-        signUpButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(signUpButton);
-        signUpButton.setBounds(275, 334, 96, 29);
-
-        jLabel8.setText("Hello New Friend! Tell us about yourself");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(84, 0, 335, 40);
-
-        jLabel9.setText("Your User Id*:");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(156, 48, 87, 16);
+        uGender.setBounds(530, 320, 130, 30);
 
         UserIDjText.setText("7 digits");
         UserIDjText.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -231,7 +135,206 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
         getContentPane().add(UserIDjText);
-        UserIDjText.setBounds(310, 48, 203, 22);
+        UserIDjText.setBounds(490, 90, 203, 30);
+
+        jPanel2.setBackground(new java.awt.Color(32, 47, 90));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 851, 0);
+
+        jPanel1.setBackground(new java.awt.Color(0, 18, 50));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 130, 440);
+
+        jLabel8.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 24)); // NOI18N
+        jLabel8.setText("Hello New Friend! Tell us about yourself");
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/SmallUserIcon.png"))); // NOI18N
+        jLabel10.setText("jLabel10");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(190, 0, 620, 80);
+
+        jPanel4.setBackground(new java.awt.Color(32, 47, 90));
+
+        uPassword.setText("jPasswordField1");
+        uPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uPasswordFocusGained(evt);
+            }
+        });
+
+        uAge.setText("How old are you?");
+        uAge.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uAgeFocusGained(evt);
+            }
+        });
+        uAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uAgeActionPerformed(evt);
+            }
+        });
+
+        uHometown.setText("Where are you from?");
+        uHometown.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uHometownFocusGained(evt);
+            }
+        });
+        uHometown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uHometownActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Your Password*:");
+
+        jLabel4.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Your Name:");
+
+        jLabel5.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Your Age:");
+
+        jLabel9.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Your User Id*:");
+
+        jLabel6.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Your Location:");
+
+        jLabel7.setFont(new java.awt.Font("Sinhala Sangam MN", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Your Gender:");
+
+        uName.setText("How should we call you?");
+        uName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uNameFocusGained(evt);
+            }
+        });
+        uName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                uNameMouseClicked(evt);
+            }
+        });
+        uName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uNameActionPerformed(evt);
+            }
+        });
+
+        signUpButton.setBackground(new java.awt.Color(255, 255, 255));
+        signUpButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        signUpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/internationalIcon.png"))); // NOI18N
+        signUpButton.setText("Sign Up!");
+        signUpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpButtonMouseClicked(evt);
+            }
+        });
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(uHometown, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uAge, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uName, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(117, 117, 117))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(228, 228, 228))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(uPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(uName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(uAge, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(uHometown, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(signUpButton)
+                .addGap(19, 19, 19))
+        );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(130, 80, 680, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,12 +380,20 @@ public class CreateUser extends javax.swing.JFrame {
 
     private void signUpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpButtonMouseClicked
         // TODO add your handling code here:
+        
         String iUloc = uHometown.getText();
         String iUID = UserIDjText.getText();
         String iUpassword = String.valueOf(uPassword.getPassword());
         String iUname = uName.getText();
         String iUage = uAge.getText();
-        String iUgender = String.valueOf(uGender.getSelectedItem());         
+        String iUgender = String.valueOf(uGender.getSelectedItem());
+        
+        if (iUID.length() > 7) {
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            JOptionPane.showMessageDialog(frame, "User ID cannot have more than 7 digits", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         createNewUser(iUID, iUpassword);
         createNewUserProfile (iUID,iUname , iUage, iUloc, iUgender);
         System.out.println(iUID + " " + iUpassword + " "+ iUname + iUgender);
@@ -346,6 +457,7 @@ public class CreateUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField UserIDjText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -354,6 +466,10 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton signUpButton;
     private javax.swing.JTextField uAge;
     private javax.swing.JComboBox<String> uGender;
