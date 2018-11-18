@@ -146,7 +146,7 @@ public class CreateUser extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(32, 47, 90));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 851, 0);
+        jPanel2.setBounds(0, 0, 0, 0);
 
         jPanel1.setBackground(new java.awt.Color(0, 18, 50));
 
@@ -316,7 +316,7 @@ public class CreateUser extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel9))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(uPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -334,7 +334,7 @@ public class CreateUser extends javax.swing.JFrame {
                             .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(signUpButton)
                 .addGap(19, 19, 19))
         );

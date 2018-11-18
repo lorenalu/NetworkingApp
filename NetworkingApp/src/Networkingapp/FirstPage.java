@@ -96,10 +96,11 @@ public class FirstPage extends javax.swing.JFrame {
         signUpButton.setBounds(230, 360, 100, 40);
 
         backgroud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/FirstPage.jpg"))); // NOI18N
+        backgroud.setPreferredSize(new java.awt.Dimension(790, 534));
         getContentPane().add(backgroud);
         backgroud.setBounds(0, 0, 800, 500);
 
-        setSize(new java.awt.Dimension(802, 522));
+        setSize(new java.awt.Dimension(800, 522));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

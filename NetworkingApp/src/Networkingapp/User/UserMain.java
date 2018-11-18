@@ -6,7 +6,9 @@
 package Networkingapp.User;
 
 import Networkingapp.Connector.*;
+import Networkingapp.FirstPage;
 import Networkingapp.Login;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,7 @@ public class UserMain extends javax.swing.JFrame {
     
     public void initProfile() throws SQLException{
         
-        //ResultSet res = UserConnector.getProfileInfo();
+        ResultSet res = ProfileConnector.getProfileInfo();
         select_uID.setText(UserConnector.getUserID());
         
         String name_str = ProfileConnector.getUserName();
@@ -320,7 +322,8 @@ public class UserMain extends javax.swing.JFrame {
         
         UserConnector.setUserIDandPassword("", "");
         dispose();
-        new Login().setVisible(true);
+        new FirstPage().setVisible(true);
+        
         
     }//GEN-LAST:event_logout_buttonMouseClicked
 

@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package Networkingapp.Connector;
-import Networkingapp.Database.OracleDatabaseConnect;
+import Networkingapp.Database.DatabaseManager;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author peichen
@@ -24,7 +22,7 @@ public class UserConnector{
         ResultSet res = null;
         String pwd = "";
         try{
-        OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+        DatabaseManager dbm = DatabaseManager.getInstance();
         res = dbm.queryWithPrepareStatement ("SELECT * FROM App_User WHERE user_ID = ?", uID.trim());
         }catch(SQLException e){
             throw new SQLException(e.getMessage());
