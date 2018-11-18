@@ -25,6 +25,7 @@ DROP TABLE Supervisor;
 DROP TABLE Message;
 DROP TABLE App_User;
 
+commit;
 
 CREATE TABLE App_User(
 user_ID VARCHAR(8) PRIMARY KEY,
@@ -34,7 +35,7 @@ CREATE TABLE Profile(
 profile_ID VARCHAR(8) PRIMARY KEY,
 profile_name VARCHAR(15) NOT NULL,
 profile_age INTEGER,
-profile_location VARCHAR(30),
+profile_location VARCHAR(60),
 profile_gender VARCHAR(10),
 user_ID VARCHAR(8) UNIQUE,
 FOREIGN KEY(user_ID) REFERENCES App_User ON DELETE CASCADE);
@@ -527,7 +528,7 @@ insert into Supervise values
 ('sp000010', 'u0001010', 'post1010');
 
 
-
+commit;
 
 
 
