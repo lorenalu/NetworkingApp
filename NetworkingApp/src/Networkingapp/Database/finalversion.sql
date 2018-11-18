@@ -158,6 +158,9 @@ insert into App_User values
 ( 'u0000005', 'abc12345678');
 
 insert into App_User values
+('sp000003', 'hello');
+
+insert into App_User values
 ( 'u0000006', 'abc12345678');
 
 insert into App_User values

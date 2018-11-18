@@ -36,6 +36,7 @@ public class SupervisorMain extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(400, 300));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
@@ -55,7 +56,7 @@ public class SupervisorMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(16, 76, 108, 29);
+        jButton1.setBounds(16, 76, 85, 27);
 
         jButton2.setText("Avertisements' Category");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,7 +70,7 @@ public class SupervisorMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(16, 124, 197, 29);
+        jButton2.setBounds(16, 124, 167, 27);
 
         jButton3.setText("Message of Users");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,7 +84,7 @@ public class SupervisorMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(16, 171, 154, 29);
+        jButton3.setBounds(16, 171, 129, 27);
 
         jButton4.setText("Advertisements' Summary");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,7 +98,7 @@ public class SupervisorMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(16, 218, 207, 29);
+        jButton4.setBounds(16, 218, 177, 27);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/login-backgroud.jpeg"))); // NOI18N
         getContentPane().add(jLabel3);

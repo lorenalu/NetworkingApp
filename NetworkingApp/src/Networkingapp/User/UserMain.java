@@ -107,7 +107,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         editProfile_frame.getContentPane().add(save_button);
-        save_button.setBounds(80, 310, 90, 29);
+        save_button.setBounds(80, 310, 90, 27);
 
         cancel_button.setText("Cancel");
         cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,32 +116,32 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         editProfile_frame.getContentPane().add(cancel_button);
-        cancel_button.setBounds(250, 310, 86, 29);
+        cancel_button.setBounds(250, 310, 66, 27);
 
         name_label.setText("User Name");
         editProfile_frame.getContentPane().add(name_label);
-        name_label.setBounds(49, 36, 68, 16);
+        name_label.setBounds(49, 36, 64, 15);
 
         gender_label.setText("Gender");
         editProfile_frame.getContentPane().add(gender_label);
-        gender_label.setBounds(49, 124, 44, 16);
+        gender_label.setBounds(49, 124, 43, 15);
 
         age_label.setText("Age");
         editProfile_frame.getContentPane().add(age_label);
-        age_label.setBounds(49, 80, 24, 16);
+        age_label.setBounds(49, 80, 22, 15);
 
         about_label.setText("About Yourself");
         editProfile_frame.getContentPane().add(about_label);
-        about_label.setBounds(30, 200, 94, 16);
+        about_label.setBounds(30, 200, 84, 15);
         editProfile_frame.getContentPane().add(userName_txt);
-        userName_txt.setBounds(161, 31, 158, 26);
+        userName_txt.setBounds(161, 31, 158, 27);
         editProfile_frame.getContentPane().add(age_txt);
-        age_txt.setBounds(161, 75, 158, 26);
+        age_txt.setBounds(161, 75, 158, 27);
 
         plain_label.setForeground(new java.awt.Color(102, 102, 102));
         plain_label.setText("Not required, but suggest to fill in information.");
         editProfile_frame.getContentPane().add(plain_label);
-        plain_label.setBounds(40, 280, 298, 16);
+        plain_label.setBounds(40, 280, 268, 15);
 
         about_txt.setColumns(20);
         about_txt.setLineWrap(true);
@@ -153,7 +153,7 @@ public class UserMain extends javax.swing.JFrame {
 
         gender_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Female", "Male", "Girl", "Boy", "Secret" }));
         editProfile_frame.getContentPane().add(gender_cb);
-        gender_cb.setBounds(160, 120, 160, 27);
+        gender_cb.setBounds(160, 120, 160, 25);
 
         editProfile_bg_label.setBackground(new java.awt.Color(204, 204, 204));
         editProfile_bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/edit-profile.png"))); // NOI18N
@@ -173,7 +173,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(post_button);
-        post_button.setBounds(470, 70, 75, 29);
+        post_button.setBounds(470, 70, 52, 27);
 
         editProfile_button.setText("Edit Profile");
         editProfile_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,7 +182,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(editProfile_button);
-        editProfile_button.setBounds(470, 150, 112, 29);
+        editProfile_button.setBounds(470, 150, 90, 27);
 
         msg_button.setText("Message");
         msg_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,15 +191,15 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(msg_button);
-        msg_button.setBounds(470, 110, 98, 29);
+        msg_button.setBounds(470, 110, 78, 27);
 
         userID_label.setText("User ID:");
         bg_panel.add(userID_label);
-        userID_label.setBounds(50, 40, 50, 16);
+        userID_label.setBounds(50, 40, 46, 15);
 
         select_uID.setText("uID");
         bg_panel.add(select_uID);
-        select_uID.setBounds(110, 40, 90, 16);
+        select_uID.setBounds(110, 40, 90, 15);
 
         logout_button.setText("Logout");
         logout_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,7 +208,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(logout_button);
-        logout_button.setBounds(470, 300, 88, 29);
+        logout_button.setBounds(470, 300, 66, 27);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Profile"));
@@ -228,24 +228,29 @@ public class UserMain extends javax.swing.JFrame {
 
         dsiplayintro_label.setText("Introdution :");
         jPanel1.add(dsiplayintro_label);
-        dsiplayintro_label.setBounds(40, 150, 100, 16);
+        dsiplayintro_label.setBounds(40, 150, 100, 15);
 
         name_txtField.setEditable(false);
         jPanel1.add(name_txtField);
-        name_txtField.setBounds(110, 30, 120, 26);
+        name_txtField.setBounds(110, 30, 120, 27);
 
         age_txtField.setEditable(false);
         jPanel1.add(age_txtField);
-        age_txtField.setBounds(110, 70, 120, 26);
+        age_txtField.setBounds(110, 70, 120, 27);
 
         gender_txtField.setEditable(false);
         jPanel1.add(gender_txtField);
-        gender_txtField.setBounds(110, 110, 120, 26);
+        gender_txtField.setBounds(110, 110, 120, 27);
 
         intro_txtArea.setEditable(false);
         intro_txtArea.setColumns(20);
         intro_txtArea.setLineWrap(true);
         intro_txtArea.setRows(5);
+        intro_txtArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                intro_txtAreaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(intro_txtArea);
 
         jPanel1.add(jScrollPane1);
@@ -326,6 +331,10 @@ public class UserMain extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_logout_buttonMouseClicked
+
+    private void intro_txtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intro_txtAreaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_intro_txtAreaMouseClicked
 
     /**
      * @param args the command line arguments

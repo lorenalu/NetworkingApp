@@ -217,7 +217,11 @@ public class Login extends javax.swing.JFrame {
                         new UserMain().setVisible(true);
                     }else{
                      //supervisor
-                     new SupervisorMain().setVisible(true);
+                     SupervisorMain s = new SupervisorMain();
+                     s.setVisible(true);
+                     s.setSize(400,300);
+                     s.setLocationRelativeTo(null);
+                     
                     }
                     setVisible(false);
                     dispose();
