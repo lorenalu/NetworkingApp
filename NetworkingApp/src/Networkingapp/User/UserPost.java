@@ -101,12 +101,14 @@ public class UserPost extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         postTable = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        goback_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Post");
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to Networking Post"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to Post"));
         jPanel1.setToolTipText("");
 
         jLabel1.setText("Search");
@@ -118,6 +120,7 @@ public class UserPost extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         contentDsiplay.setColumns(20);
+        contentDsiplay.setFont(new java.awt.Font("Toppan Bunkyu Mincho", 0, 24)); // NOI18N
         contentDsiplay.setLineWrap(true);
         contentDsiplay.setRows(5);
         jScrollPane2.setViewportView(contentDsiplay);
@@ -168,6 +171,15 @@ public class UserPost extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(postTable);
 
+        jButton2.setText("Delete Post");
+
+        goback_button.setText("Go Back");
+        goback_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goback_buttonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -187,23 +199,26 @@ public class UserPost extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(allPost_button)
-                                .addGap(80, 80, 80)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                                 .addComponent(myPost_button)
-                                .addGap(103, 103, 103)
-                                .addComponent(jButton4))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                .addGap(45, 45, 45)
+                                .addComponent(jButton4)
+                                .addGap(34, 34, 34)
                                 .addComponent(jButton5)
-                                .addGap(102, 102, 102)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGap(23, 23, 23)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(33, 33, 33)
+                                .addComponent(goback_button)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +230,7 @@ public class UserPost extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,22 +239,16 @@ public class UserPost extends javax.swing.JFrame {
                     .addComponent(allPost_button)
                     .addComponent(myPost_button)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton2)
+                    .addComponent(goback_button))
                 .addGap(44, 44, 44))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(66, 50, 911, 488);
 
-        setSize(new java.awt.Dimension(883, 520));
+        setSize(new java.awt.Dimension(1040, 619));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,6 +290,16 @@ public class UserPost extends javax.swing.JFrame {
         initPost();
         repaint();
     }//GEN-LAST:event_allPost_buttonMouseClicked
+
+    private void goback_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goback_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        try {
+            new UserMain().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_goback_buttonMouseClicked
 
     private void initContent(String postID){
         
@@ -328,7 +347,9 @@ public class UserPost extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton allPost_button;
     private javax.swing.JTextArea contentDsiplay;
+    private javax.swing.JButton goback_button;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
