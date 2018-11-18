@@ -6,7 +6,6 @@
 package Networkingapp.Supervisor;
 
 import Networkingapp.Database.DatabaseManager;
-import Networkingapp.User.UserPosts;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -55,7 +54,7 @@ public class SupervisorPost extends javax.swing.JFrame {
                managedPosts.addElement(str);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserPosts.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SupervisorPost.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
