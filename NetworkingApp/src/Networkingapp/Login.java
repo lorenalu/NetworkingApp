@@ -23,7 +23,10 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        
         initComponents();
+//        userID_field.setText("");
+//        password_field.setText("");
     }
 
     /**
@@ -48,11 +51,10 @@ public class Login extends javax.swing.JFrame {
         userID_field = new javax.swing.JTextField();
         bg_label = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         loaginfail_frame.setTitle("Login Faild");
-        loaginfail_frame.setSize(new java.awt.Dimension(231, 192));
         loaginfail_frame.setVisible(false);
 
         loginfail_label.setText("Login Failed.");
@@ -207,14 +209,15 @@ public class Login extends javax.swing.JFrame {
         
         try {
             if(UserConnector.userExist(uid, pwd)){
+                System.out.println("hehe");
                 if(SupervisorConnector.superExist(uid)){
                     SupervisorConnector.setSuperIDAndPassword(uid, pwd);
-                    dispose();
                     new FirstPage().setVisible(true);
+                    dispose();
                 }else{
                     UserConnector.setUserIDandPassword(uid, pwd);
-                    dispose();
                     new UserMain().setVisible(true);
+                    dispose();
                 }
             }else{
                 loginAttempts++;
