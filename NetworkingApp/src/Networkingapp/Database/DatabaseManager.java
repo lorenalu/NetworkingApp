@@ -47,6 +47,11 @@ public class DatabaseManager {
             return false;
         }
     }
+    
+    public PreparedStatement preparedStatement(String query) throws SQLException{
+        PreparedStatement statement = con.prepareStatement(query);
+        return statement;
+    }
 
     public ResultSet queryWithPrepareStatement(String query, Object... param) throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
@@ -59,6 +64,11 @@ public class DatabaseManager {
         PreparedStatement statement = con.prepareStatement(query);
         prepareStatement(statement, param);
         return statement.executeUpdate();
+    }
+    
+    public int updateStatement (String query)throws SQLException{
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(query);
     }
 
     private void prepareStatement(PreparedStatement ps, Object[] parameters) throws SQLException {
@@ -89,6 +99,7 @@ public class DatabaseManager {
                 // Boolean
                 ps.setBoolean(i+1, ((Boolean)parameters[i]).booleanValue());
             } else {
+                System.out.println(parameters[i].getClass().getSimpleName());
                 throw new SQLException("Invalid parameter type: "+parameters[i].getClass().getSimpleName());
             }
         }
