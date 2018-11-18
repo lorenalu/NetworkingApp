@@ -88,7 +88,7 @@ public class UserMain extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         bg_label = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("User Main Page");
         setBackground(new java.awt.Color(204, 204, 204));
         getContentPane().setLayout(null);

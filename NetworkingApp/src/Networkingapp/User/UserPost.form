@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Post"/>
   </Properties>
   <SyntheticProperties>
@@ -84,7 +84,7 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="263" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deletePost_button" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="goback_button" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -117,7 +117,7 @@
                       <Component id="myPost_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deletePost_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="goback_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
@@ -233,10 +233,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="deletePost_button">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Post"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deletePost_buttonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="goback_button">
           <Properties>

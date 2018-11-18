@@ -51,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         userID_field = new javax.swing.JTextField();
         bg_label = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         loaginfail_frame.setTitle("Login Faild");
@@ -202,9 +202,10 @@ public class Login extends javax.swing.JFrame {
     
     private int loginAttempts = 0;
     private void initUserPre(){
-        
-        String uid = userID_field.getText();
-        String pwd = password_field.getText();
+        String uid = "";
+        uid = userID_field.getText();
+        String pwd = "";
+        pwd = password_field.getText();
         
         
         try {
@@ -213,10 +214,12 @@ public class Login extends javax.swing.JFrame {
                 if(SupervisorConnector.superExist(uid)){
                     SupervisorConnector.setSuperIDAndPassword(uid, pwd);
                     new FirstPage().setVisible(true);
+                    //this.removeAll();
                     dispose();
                 }else{
                     UserConnector.setUserIDandPassword(uid, pwd);
                     new UserMain().setVisible(true);
+                    //this.removeAll();
                     dispose();
                 }
             }else{
