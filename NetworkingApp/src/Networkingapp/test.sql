@@ -8,4 +8,5 @@
  * Created: 17-Nov-2018
  */
 
-insert into App_user values('sp000003','hello');
+Select *
+From App_User;

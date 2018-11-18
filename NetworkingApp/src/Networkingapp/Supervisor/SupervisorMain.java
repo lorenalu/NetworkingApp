@@ -10,13 +10,11 @@ package Networkingapp.Supervisor;
  * @author Linda <lujiecanada@gmail.com>
  */
 public class SupervisorMain extends javax.swing.JFrame {
-    String sID;
     /**
      * Creates new form SupervisorMain
      */
-    public SupervisorMain(String userID) {
-        initComponents();
-        sID =  userID;
+    public SupervisorMain() {
+        
     }
 
     /**
@@ -174,7 +172,7 @@ public class SupervisorMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SupervisorMain("").setVisible(true);
+                new SupervisorMain().setVisible(true);
             }
         });
     }
