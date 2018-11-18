@@ -65,7 +65,7 @@ public class CreateUser extends javax.swing.JFrame {
             dbm.updateStatement(createProfile);
             JFrame frame = new JFrame();
                 frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                JOptionPane.showMessageDialog(frame,  "Welcome! "+uName, "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Your user id is " + uid,"Welcome! "+uName, JOptionPane.INFORMATION_MESSAGE);
             dispose();
             new FirstPage().setVisible(true);
             } 
