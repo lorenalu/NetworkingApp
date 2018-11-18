@@ -334,11 +334,7 @@ public class UserPost extends javax.swing.JFrame {
                 if(pID.equals("")){
                     return;
                 }else{
-                    try {
-                        PostConnector.delPost(pID);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(UserPost.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    PostConnector.delPost(pID);
                 }
             }
         }
