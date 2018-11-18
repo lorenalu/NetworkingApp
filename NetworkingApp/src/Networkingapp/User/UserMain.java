@@ -288,9 +288,9 @@ public class UserMain extends javax.swing.JFrame {
 
     private void editProfile_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfile_buttonMouseClicked
         // TODO add your handling code here:
-        
         editProfile_frame.setVisible(true);
         
+
     }//GEN-LAST:event_editProfile_buttonMouseClicked
 
     private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked

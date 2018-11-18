@@ -73,7 +73,7 @@ public class PostConnector {
                 con.rollback();
             } catch (SQLException ex1) {
                 Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex1);
-                JOptionPane.showMessageDialog(null, "Delete unsuccessful", "DELETE ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Delete Unsuccessful.", "DELETE ERROR", JOptionPane.ERROR_MESSAGE);
                 throw new SQLException(ex1.getMessage());
             }
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,15 +90,18 @@ public class PostConnector {
     public static void delPost(String pID){
         
         ResultSet res;
+        String ppID = pID.trim();
         DatabaseManager dbm = DatabaseManager.getInstance();
-        
+        System.out.println("step start delete process 1");
         try {
-            res = dbm.queryWithPrepareStatement ("SELECT * FROM Post, App_User WHERE Post.user_ID = ?", UserConnector.getUserID());
+            res = dbm.queryWithPrepareStatement ("SELECT Post.POST_ID FROM Post, App_User WHERE post.USER_ID = app_user.USER_ID and post.POST_ID = ? and post.USER_ID = ? ", ppID, UserConnector.getUserID());
                     
             if(res.next()){
-                String str = res.getString("post_ID");
-                if(str.equals(pID)){
-                    delPostHelper(pID);
+                System.out.println("step start delete process 2");
+                String str = res.getString("POST_ID");
+                if(str.equals(ppID)){
+                    System.out.println("step start delete process 3");
+                    delPostHelper(ppID);
                 }
             }
         } catch (SQLException ex) {

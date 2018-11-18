@@ -6,6 +6,7 @@
 package Networkingapp.User;
 
 import Networkingapp.Connector.PostConnector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,8 +37,8 @@ public class CreatePost extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         postContent_txt = new javax.swing.JTextPane();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        save_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -73,18 +74,23 @@ public class CreatePost extends javax.swing.JFrame {
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(140, 130, 280, 27);
 
-        jButton1.setText("Save");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        save_button.setText("Save");
+        save_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                save_buttonMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(150, 380, 90, 29);
+        getContentPane().add(save_button);
+        save_button.setBounds(150, 380, 90, 29);
 
-        jButton2.setText("Cancel");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(330, 380, 86, 29);
+        cancel_button.setText("Cancel");
+        cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_buttonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(cancel_button);
+        cancel_button.setBounds(330, 380, 86, 29);
 
         jLabel5.setFont(new java.awt.Font("Songti TC", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -100,17 +106,27 @@ public class CreatePost extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void save_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_buttonMouseClicked
         // TODO add your handling code here:
-        int crPost = PostConnector.createPost(postTitle_txt.getText(), postContent_txt.getText());
-        
-        if(crPost!=1){
-            
+        String pTitle = postTitle_txt.getText();
+        String pContent = postContent_txt.getText();
+        pTitle = pTitle.trim();
+        if( pTitle.isEmpty() || pTitle.equals("")){
+            JOptionPane.showMessageDialog(null, "Title Cannot Be Blank.", "CREATE ERROR", JOptionPane.ERROR_MESSAGE);
+            dispose();
+            return;
         }
-            
+        PostConnector.createPost(pTitle, pContent);         
         dispose();
         new UserPost().setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+        //UserPost.refreshPostPage();
+    }//GEN-LAST:event_save_buttonMouseClicked
+
+    private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new UserPost().setVisible(true);
+    }//GEN-LAST:event_cancel_buttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -148,8 +164,7 @@ public class CreatePost extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancel_button;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -159,5 +174,6 @@ public class CreatePost extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane postContent_txt;
     private javax.swing.JTextField postTitle_txt;
+    private javax.swing.JButton save_button;
     // End of variables declaration//GEN-END:variables
 }

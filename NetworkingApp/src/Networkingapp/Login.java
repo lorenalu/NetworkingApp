@@ -194,7 +194,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         loaginfail_frame.setVisible(false);
         String labelstr = loginfail_label.getText();
-        if(labelstr.toString() == "User not exists."){
+        if(labelstr.equals("User not exists.")){
             dispose();
             System.exit(-1);
         }
@@ -210,7 +210,6 @@ public class Login extends javax.swing.JFrame {
         
         try {
             if(UserConnector.userExist(uid, pwd)){
-                System.out.println("hehe");
                 if(SupervisorConnector.superExist(uid)){
                     SupervisorConnector.setSuperIDAndPassword(uid, pwd);
                     new FirstPage().setVisible(true);
