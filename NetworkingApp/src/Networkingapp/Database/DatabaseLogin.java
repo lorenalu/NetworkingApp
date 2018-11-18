@@ -137,7 +137,6 @@ public class DatabaseLogin extends javax.swing.JFrame {
             // remove the login dialog
             dispose();
             new FirstPage().setVisible(true);
-            // new CreateUser().setVisible(true);
         }
         else{
             loginAttempts++;

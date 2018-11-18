@@ -25,6 +25,7 @@ DROP TABLE Supervisor;
 DROP TABLE Message;
 DROP TABLE App_User;
 
+commit;
 
 CREATE TABLE App_User(
 user_ID VARCHAR(8) PRIMARY KEY,
@@ -34,7 +35,7 @@ CREATE TABLE Profile(
 profile_ID VARCHAR(8) PRIMARY KEY,
 profile_name VARCHAR(15) NOT NULL,
 profile_age INTEGER,
-profile_location VARCHAR(30),
+profile_location VARCHAR(60),
 profile_gender VARCHAR(10),
 user_ID VARCHAR(8) UNIQUE,
 FOREIGN KEY(user_ID) REFERENCES App_User ON DELETE CASCADE);
@@ -158,7 +159,7 @@ insert into App_User values
 ( 'u0000005', 'abc12345678');
 
 insert into App_User values
-('sp000003', 'hello');
+( 'sp000003', 'hello');
 
 insert into App_User values
 ( 'u0000006', 'abc12345678');
@@ -408,35 +409,6 @@ insert into Post_Category values
 
 insert into Post_Category values
 ( 'post0010', 'Pet');
-insert into Post_Category values
-( 'post1001', 'Weather');
-
-insert into Post_Category values
-( 'post1002', 'Weather');
-
-insert into Post_Category values
-( 'post1003', 'Pet');
-
-insert into Post_Category values
-( 'post1004', 'Children');
-
-insert into Post_Category values
-( 'post1005', 'Pet');
-
-insert into Post_Category values
-( 'post1006', 'Pet');
-
-insert into Post_Category values
-( 'post1007', 'Children');
-
-insert into Post_Category values
-( 'post1008', 'Parents');
-
-insert into Post_Category values
-( 'post1009', 'Pet');
-
-insert into Post_Category values
-( 'post1010', 'Pet');
 
 insert into Advertisement values
 ('post1001', 1000000,'UBC CPSC department');
@@ -559,7 +531,7 @@ insert into Supervise values
 ('sp000010', 'u0001010', 'post1010');
 
 
-
+commit;
 
 
 

@@ -3,7 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Networkingapp;
+package Networkingapp.User;
+
+import Networkingapp.Connector.*;
+import Networkingapp.FirstPage;
+import Networkingapp.Login;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,10 +22,30 @@ public class UserMain extends javax.swing.JFrame {
     /**
      * Creates new form UserMain
      */
-    public UserMain() {
+    public UserMain() throws SQLException{
         initComponents();
+        initProfile();
+        
+        
     }
 
+    
+    public void initProfile() throws SQLException{
+        
+        ResultSet res = ProfileConnector.getProfileInfo();
+        select_uID.setText(UserConnector.getUserID());
+        
+        String name_str = ProfileConnector.getUserName();
+        String age_str  = ProfileConnector.getUserAge();
+        String gender_str  = ProfileConnector.getUserGender();
+        String intro_str  = ProfileConnector.getUserIntorduction();
+                
+        name_txtField.setText(name_str);
+        age_txtField.setText(age_str);
+        gender_txtField.setText(gender_str);
+        intro_txtArea.setText(intro_str);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +55,286 @@ public class UserMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editProfile_frame = new javax.swing.JInternalFrame();
+        save_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
+        name_label = new javax.swing.JLabel();
+        gender_label = new javax.swing.JLabel();
+        age_label = new javax.swing.JLabel();
+        about_label = new javax.swing.JLabel();
+        userName_txt = new javax.swing.JFormattedTextField();
+        age_txt = new javax.swing.JFormattedTextField();
+        plain_label = new javax.swing.JLabel();
+        editProfile_txtpanel = new javax.swing.JScrollPane();
+        about_txt = new javax.swing.JTextArea();
+        gender_cb = new javax.swing.JComboBox<>();
+        editProfile_bg_label = new javax.swing.JLabel();
+        bg_panel = new javax.swing.JPanel();
+        post_button = new javax.swing.JButton();
+        editProfile_button = new javax.swing.JButton();
+        msg_button = new javax.swing.JButton();
+        userID_label = new javax.swing.JLabel();
+        select_uID = new javax.swing.JLabel();
+        logout_button = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        dsiplayname_label = new javax.swing.JLabel();
+        dsiplayage_label = new javax.swing.JLabel();
+        dsiplaygender_label = new javax.swing.JLabel();
+        dsiplayintro_label = new javax.swing.JLabel();
+        name_txtField = new javax.swing.JTextField();
+        age_txtField = new javax.swing.JTextField();
+        gender_txtField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        intro_txtArea = new javax.swing.JTextArea();
+        bg_label = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("User Main Page");
+        setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        editProfile_frame.setBackground(new java.awt.Color(255, 255, 255));
+        editProfile_frame.setClosable(true);
+        editProfile_frame.setTitle("Edit Profile");
+        editProfile_frame.setPreferredSize(new java.awt.Dimension(430, 420));
+        editProfile_frame.setVisible(false);
+        editProfile_frame.getContentPane().setLayout(null);
 
-        pack();
+        save_button.setText("Save");
+        save_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                save_buttonMouseClicked(evt);
+            }
+        });
+        editProfile_frame.getContentPane().add(save_button);
+        save_button.setBounds(80, 310, 90, 27);
+
+        cancel_button.setText("Cancel");
+        cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_buttonMouseClicked(evt);
+            }
+        });
+        editProfile_frame.getContentPane().add(cancel_button);
+        cancel_button.setBounds(250, 310, 66, 27);
+
+        name_label.setText("User Name");
+        editProfile_frame.getContentPane().add(name_label);
+        name_label.setBounds(49, 36, 64, 15);
+
+        gender_label.setText("Gender");
+        editProfile_frame.getContentPane().add(gender_label);
+        gender_label.setBounds(49, 124, 43, 15);
+
+        age_label.setText("Age");
+        editProfile_frame.getContentPane().add(age_label);
+        age_label.setBounds(49, 80, 22, 15);
+
+        about_label.setText("About Yourself");
+        editProfile_frame.getContentPane().add(about_label);
+        about_label.setBounds(30, 200, 84, 15);
+        editProfile_frame.getContentPane().add(userName_txt);
+        userName_txt.setBounds(161, 31, 158, 27);
+        editProfile_frame.getContentPane().add(age_txt);
+        age_txt.setBounds(161, 75, 158, 27);
+
+        plain_label.setForeground(new java.awt.Color(102, 102, 102));
+        plain_label.setText("Not required, but suggest to fill in information.");
+        editProfile_frame.getContentPane().add(plain_label);
+        plain_label.setBounds(40, 280, 268, 15);
+
+        about_txt.setColumns(20);
+        about_txt.setLineWrap(true);
+        about_txt.setRows(5);
+        editProfile_txtpanel.setViewportView(about_txt);
+
+        editProfile_frame.getContentPane().add(editProfile_txtpanel);
+        editProfile_txtpanel.setBounds(147, 163, 190, 100);
+
+        gender_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Female", "Male", "Girl", "Boy", "Secret" }));
+        editProfile_frame.getContentPane().add(gender_cb);
+        gender_cb.setBounds(160, 120, 160, 25);
+
+        editProfile_bg_label.setBackground(new java.awt.Color(204, 204, 204));
+        editProfile_bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/edit-profile.png"))); // NOI18N
+        editProfile_frame.getContentPane().add(editProfile_bg_label);
+        editProfile_bg_label.setBounds(-100, -50, 500, 450);
+
+        getContentPane().add(editProfile_frame);
+        editProfile_frame.setBounds(10, 10, 430, 420);
+
+        bg_panel.setBackground(new java.awt.Color(255, 255, 255));
+        bg_panel.setLayout(null);
+
+        post_button.setText("Post");
+        post_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                post_buttonMouseClicked(evt);
+            }
+        });
+        bg_panel.add(post_button);
+        post_button.setBounds(470, 70, 52, 27);
+
+        editProfile_button.setText("Edit Profile");
+        editProfile_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editProfile_buttonMouseClicked(evt);
+            }
+        });
+        bg_panel.add(editProfile_button);
+        editProfile_button.setBounds(470, 150, 90, 27);
+
+        msg_button.setText("Message");
+        msg_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                msg_buttonMouseClicked(evt);
+            }
+        });
+        bg_panel.add(msg_button);
+        msg_button.setBounds(470, 110, 78, 27);
+
+        userID_label.setText("User ID:");
+        bg_panel.add(userID_label);
+        userID_label.setBounds(50, 40, 46, 15);
+
+        select_uID.setText("uID");
+        bg_panel.add(select_uID);
+        select_uID.setBounds(110, 40, 90, 15);
+
+        logout_button.setText("Logout");
+        logout_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logout_buttonMouseClicked(evt);
+            }
+        });
+        bg_panel.add(logout_button);
+        logout_button.setBounds(470, 300, 66, 27);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Profile"));
+        jPanel1.setLayout(null);
+
+        dsiplayname_label.setText("Name :");
+        jPanel1.add(dsiplayname_label);
+        dsiplayname_label.setBounds(40, 30, 50, 30);
+
+        dsiplayage_label.setText("Age :");
+        jPanel1.add(dsiplayage_label);
+        dsiplayage_label.setBounds(40, 70, 50, 30);
+
+        dsiplaygender_label.setText("Gender :");
+        jPanel1.add(dsiplaygender_label);
+        dsiplaygender_label.setBounds(40, 110, 60, 30);
+
+        dsiplayintro_label.setText("Introdution :");
+        jPanel1.add(dsiplayintro_label);
+        dsiplayintro_label.setBounds(40, 150, 100, 15);
+
+        name_txtField.setEditable(false);
+        jPanel1.add(name_txtField);
+        name_txtField.setBounds(110, 30, 120, 27);
+
+        age_txtField.setEditable(false);
+        jPanel1.add(age_txtField);
+        age_txtField.setBounds(110, 70, 120, 27);
+
+        gender_txtField.setEditable(false);
+        jPanel1.add(gender_txtField);
+        gender_txtField.setBounds(110, 110, 120, 27);
+
+        intro_txtArea.setEditable(false);
+        intro_txtArea.setColumns(20);
+        intro_txtArea.setLineWrap(true);
+        intro_txtArea.setRows(5);
+        intro_txtArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                intro_txtAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(intro_txtArea);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 170, 290, 80);
+
+        bg_panel.add(jPanel1);
+        jPanel1.setBounds(40, 60, 370, 270);
+
+        getContentPane().add(bg_panel);
+        bg_panel.setBounds(80, 50, 600, 370);
+
+        bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/User-Main-background.jpg"))); // NOI18N
+        getContentPane().add(bg_label);
+        bg_label.setBounds(0, 0, 760, 460);
+
+        setSize(new java.awt.Dimension(760, 482));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void post_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_post_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new UserPost().setVisible(true);
+        
+    }//GEN-LAST:event_post_buttonMouseClicked
+
+    private void msg_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_msg_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new Message().setVisible(true);
+    }//GEN-LAST:event_msg_buttonMouseClicked
+
+    private void editProfile_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfile_buttonMouseClicked
+        // TODO add your handling code here:
+        
+        editProfile_frame.setVisible(true);
+        
+    }//GEN-LAST:event_editProfile_buttonMouseClicked
+
+    private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        // TODO add your handling code here:
+        about_txt.setText(""); 
+        age_txt.setText(""); 
+        userName_txt.setText(""); 
+        gender_cb.setSelectedIndex(0);
+        editProfile_frame.setVisible(false);
+        
+    }//GEN-LAST:event_cancel_buttonMouseClicked
+
+    private void save_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_buttonMouseClicked
+        // TODO add your handling code here:
+        String name = userName_txt.getText();
+        String age = age_txt.getText();
+        String intro = about_txt.getText();
+        String gender = gender_cb.getSelectedItem().toString();
+        ProfileConnector.updateUserProfile(name, age, gender, intro);
+       
+        about_txt.setText(""); 
+        age_txt.setText(""); 
+        userName_txt.setText(""); 
+        editProfile_frame.setVisible(false);  
+        try {
+            initProfile();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        invalidate();
+//        validate();
+        repaint();    
+    }//GEN-LAST:event_save_buttonMouseClicked
+
+    private void logout_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_buttonMouseClicked
+        // TODO add your handling code here:
+        
+        UserConnector.setUserIDandPassword("", "");
+        dispose();
+        new FirstPage().setVisible(true);
+        
+        
+    }//GEN-LAST:event_logout_buttonMouseClicked
+
+    private void intro_txtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intro_txtAreaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_intro_txtAreaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -73,11 +366,49 @@ public class UserMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserMain().setVisible(true);
+               
+                try {
+                    new UserMain().setVisible(true);
+                } catch (SQLException e) {
+                    Logger.getLogger(UserMain.class.getName()).log(Level.SEVERE, null, e);
+                }
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel about_label;
+    private javax.swing.JTextArea about_txt;
+    private javax.swing.JLabel age_label;
+    private javax.swing.JFormattedTextField age_txt;
+    private javax.swing.JTextField age_txtField;
+    private javax.swing.JLabel bg_label;
+    private javax.swing.JPanel bg_panel;
+    private javax.swing.JButton cancel_button;
+    private javax.swing.JLabel dsiplayage_label;
+    private javax.swing.JLabel dsiplaygender_label;
+    private javax.swing.JLabel dsiplayintro_label;
+    private javax.swing.JLabel dsiplayname_label;
+    private javax.swing.JLabel editProfile_bg_label;
+    private javax.swing.JButton editProfile_button;
+    private javax.swing.JInternalFrame editProfile_frame;
+    private javax.swing.JScrollPane editProfile_txtpanel;
+    private javax.swing.JComboBox<String> gender_cb;
+    private javax.swing.JLabel gender_label;
+    private javax.swing.JTextField gender_txtField;
+    private javax.swing.JTextArea intro_txtArea;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout_button;
+    private javax.swing.JButton msg_button;
+    private javax.swing.JLabel name_label;
+    private javax.swing.JTextField name_txtField;
+    private javax.swing.JLabel plain_label;
+    private javax.swing.JButton post_button;
+    private javax.swing.JButton save_button;
+    private javax.swing.JLabel select_uID;
+    private javax.swing.JLabel userID_label;
+    private javax.swing.JFormattedTextField userName_txt;
     // End of variables declaration//GEN-END:variables
 }

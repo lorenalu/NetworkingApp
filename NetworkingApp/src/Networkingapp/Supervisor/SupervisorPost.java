@@ -74,7 +74,7 @@ public class SupervisorPost extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ManagedPostList = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
         setMinimumSize(new java.awt.Dimension(920, 530));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
