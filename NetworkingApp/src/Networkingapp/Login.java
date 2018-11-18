@@ -8,7 +8,7 @@ package Networkingapp;
 import Networkingapp.Connector.UserConnector;
 import Networkingapp.Database.DatabaseManager;
 import Networkingapp.Supervisor.SupervisorMain;
-import Networkingapp.User.UserMain;
+import Networkingapp.UserMain;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
