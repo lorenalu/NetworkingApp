@@ -6,6 +6,7 @@
 package Networkingapp.Connector;
 
 import Networkingapp.Database.DatabaseManager;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 import java.time.ZoneOffset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,41 +39,109 @@ public class PostConnector {
     }
 
     
-    public int editPost(){
+    public static void editPost(String pID, String pTitle, String pContent){
+        Timestamp timestamp = Timestamp.from(ZonedDateTime.now(ZoneOffset.systemDefault()).toInstant());
         
-        
-        
-        return 0;
+        try {
+            DatabaseManager dbm = DatabaseManager.getInstance();
+            dbm.updateWithPrepareStatement ("UPDATE post SET post_title = ?, post_time = ?, "
+                                                + "post_content = ? WHERE post_ID = ?", pTitle, 
+                                                timestamp, pContent, pID);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
-    public static ResultSet showAllPost(){
+    
+    public static void delPostHelper(String pID) throws SQLException{
+        DatabaseManager dbm = DatabaseManager.getInstance();
+        Connection con = dbm.getConnection();
+        
+        
+        
+        try {  
+            con.setAutoCommit(false);
+            
+            dbm.updateWithPrepareStatement ("DELETE FROM App_Comment WHERE post_ID = ?", pID);
+            dbm.updateWithPrepareStatement ("DELETE FROM Post_Category WHERE post_ID = ?", pID); 
+            dbm.updateWithPrepareStatement ("DELETE FROM Advertisement WHERE post_ID = ?", pID);
+            dbm.updateWithPrepareStatement ("DELETE FROM Post WHERE post_ID = ?", pID);
+            con.commit();
+        } catch (SQLException ex) {
+            try {
+                con.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex1);
+                JOptionPane.showMessageDialog(null, "Delete unsuccessful", "DELETE ERROR", JOptionPane.ERROR_MESSAGE);
+                throw new SQLException(ex1.getMessage());
+            }
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //return res;
+    }
+    
+    public static void delPost(String pID){
+        
+        ResultSet res;
+        DatabaseManager dbm = DatabaseManager.getInstance();
+        
+        try {
+            res = dbm.queryWithPrepareStatement ("SELECT * FROM Post, App_User WHERE Post.user_ID = ?", UserConnector.getUserID());
+                    
+            if(res.next()){
+                String str = res.getString("post_ID");
+                if(str.equals(pID)){
+                    delPostHelper(pID);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    // (mode == 0) AllPost
+    // (mode == 1) MyPost
+    // Select...From...Where
+    public static ResultSet getPost(int mode){
         ResultSet res = null;
         
         try {
             DatabaseManager dbm = DatabaseManager.getInstance();
-            res = dbm.queryWithPrepareStatement ("SELECT * FROM post");
+            if(mode == 1){
+                res = dbm.queryWithPrepareStatement ("SELECT * FROM Post WHERE user_ID = ? ORDER BY post_time ASC", UserConnector.getUserID());
+            }else{
+                res = dbm.queryWithPrepareStatement ("SELECT * FROM Post ORDER BY post_time ASC");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return res;
     }
-    public static ResultSet showMyPost(){
-        ResultSet res = null;
-        
-        try {
-            DatabaseManager dbm = DatabaseManager.getInstance();
-            res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE user_ID = ?", UserConnector.getUserID());
-        } catch (SQLException ex) {
-            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return res;
-    }
+//    public static ResultSet getMyPost(){
+//        ResultSet res = null;
+//        
+//        try {
+//            DatabaseManager dbm = DatabaseManager.getInstance();
+//            res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE user_ID = ?", UserConnector.getUserID());
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        return res;
+//    }
     
     
     
-    public static String showSelectedContent(String selectPostID){
+    public static String getSelectedContent(String selectPostID){
         ResultSet res = null;
         String slp = selectPostID.trim();
         String sc = "There is no Content";
@@ -107,59 +177,51 @@ public class PostConnector {
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        setPostID(rpID);
+      
         return upst;
     }
     
     
-    public static boolean postExist(String checkType, String checkItem){
-        ResultSet res;
+    
+    // checkType: 1:"Post ID"
+    //            2:"post_title"
+    //            3:"post_time"
+    //            4:"post_content"
+    //            5: "user_ID"
+    
+    public static boolean postExist(int checkType, String checkItem){
+        ResultSet res = null;
         String pItem = checkItem.trim();
-        
+        String checkOp = "post_ID = ?";
         switch (checkType){
-            case "Post ID":
-                checkItem = "post_ID";
+            case 0:
                 break;
-            case "Title":
-                checkItem = "post_title";
+            case 1:
+                checkOp = "post_title = ?";
                 break;
-            case "time":
-                checkItem = "post_time";
+            case 2:
+                checkOp = "post_time = ?";
                 break;
-            case "Content":
-                checkItem = "post_content";
+            case 3:
+                checkOp = "post_content = ?";
                 break;                
-            case "uID":
-                checkItem = UserConnector.getUserID();
+            case 4:
+                checkOp = "user_ID = ?";
                 break;            
         }
                        
         try {
             DatabaseManager dbm = DatabaseManager.getInstance();
-            res = dbm.queryWithPrepareStatement ("SELECT * FROM post");
-            while(res.next()){
-                if(res.getString(checkItem).equals(pItem) ){
-                    return true;
-                }
+            res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE " + checkOp, checkItem);
+            if(res.next()){
+                return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return false;
         
     }
-    
-    public static void setPostID(String postID) {
-        PostConnector.postID = postID;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
