@@ -4,6 +4,15 @@
  * and open the template in the editor.
  */
 package Networkingapp.Supervisor;
+import Networkingapp.Database.DatabaseManager;
+import Networkingapp.User.UserPosts;
+
+import java.sql.*;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 
 /**
  *
@@ -11,13 +20,69 @@ package Networkingapp.Supervisor;
  */
 public class MessagerQuery extends javax.swing.JFrame {
 
+    
+    private DefaultListModel allAsc;
+    private DefaultListModel allDesc;
     /**
      * Creates new form MessagerQuery
      */
     public MessagerQuery() {
         initComponents();
+        myPostsList.setVisible(false);
+        
+    
+        initialAsc();
+        
+        allPostsList.setModel(allAsc);
+        
+        initialDesc();
+        myPostsList.setModel(allDesc);
     }
 
+    
+    
+     private void initialAsc(){
+        allAsc = new DefaultListModel();
+        String selectPostStr = "select send_message_writerID, send_message_receiverID, count(*) from Send_Message group by send_message_writerID, send_message_receiverID order by count(*) ASC";
+        ResultSet rs;
+        try{
+            rs = DatabaseManager.getInstance().query(selectPostStr);
+      
+            while (rs.next()){
+                String smw = rs.getString("send_message_writerID");
+                String smr = rs.getString("send_message_receiverID");
+                String count = rs.getString("count(*)");
+                String str = smw+"              "+smr+"                 "+count;
+                allAsc.addElement(str);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+     
+     
+    private void initialDesc(){
+     
+            allDesc = new DefaultListModel();
+            String selectPostStr = "select send_message_writerID, send_message_receiverID, count(*) from Send_Message group by send_message_writerID, send_message_receiverID order by count(*) DESC";    
+            ResultSet rs;
+        try {
+            rs = DatabaseManager.getInstance().query(selectPostStr);
+            while (rs.next()){
+                String smw = rs.getString("send_message_writerID");
+                String smr = rs.getString("send_message_receiverID");
+                String count = rs.getString("count(*)");
+                String str = smw+"              "+smr+"                 "+count;
+                allDesc.addElement(str);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(MessagerQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,12 +101,12 @@ public class MessagerQuery extends javax.swing.JFrame {
         ViewMyPostButton = new javax.swing.JButton();
         ViewAllPostButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel6.setText("Posts");
+        jLabel6.setText("Message");
 
-        jLabel9.setText("PostID            UserID               Time              Title                                                                     Content                                                     ");
+        jLabel9.setText("Writer_ID          Receriver_ID               Count                                                                                                                                ");
 
         allPostsList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         allPostsList.setValueIsAdjusting(true);
@@ -50,14 +115,14 @@ public class MessagerQuery extends javax.swing.JFrame {
         myPostsList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane2.setViewportView(myPostsList);
 
-        ViewMyPostButton.setText("View My Posts");
+        ViewMyPostButton.setText("Descending");
         ViewMyPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ViewMyPostButtonMouseClicked(evt);
             }
         });
 
-        ViewAllPostButton.setText("View All Posts");
+        ViewAllPostButton.setText("Ascending");
         ViewAllPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ViewAllPostButtonMouseClicked(evt);
@@ -79,8 +144,8 @@ public class MessagerQuery extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(425, 425, 425)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(340, 340, 340)
                                     .addComponent(ViewAllPostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
                                     .addComponent(ViewMyPostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,6 +172,7 @@ public class MessagerQuery extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewMyPostButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewMyPostButtonMouseClicked
