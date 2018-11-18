@@ -103,7 +103,7 @@ public class UserPost extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         postTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Post");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

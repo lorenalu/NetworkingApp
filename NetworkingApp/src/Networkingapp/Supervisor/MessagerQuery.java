@@ -5,10 +5,8 @@
  */
 package Networkingapp.Supervisor;
 import Networkingapp.Database.DatabaseManager;
-import Networkingapp.User.UserPosts;
 
 import java.sql.*;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
