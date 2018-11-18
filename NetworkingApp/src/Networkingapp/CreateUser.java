@@ -63,11 +63,6 @@ public class CreateUser extends javax.swing.JFrame {
                 + "','" + uAge + "','" + uLoc + "','" + uGender + "','" + uid + "')");
         try {
             dbm.updateStatement(createProfile);
-            JFrame frame = new JFrame();
-                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                JOptionPane.showMessageDialog(frame, "Your user id is " + uid,"Welcome! "+uName, JOptionPane.INFORMATION_MESSAGE);
-            dispose();
-            new FirstPage().setVisible(true);
             } 
         catch (SQLException ex) {
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,14 +153,12 @@ public class CreateUser extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(32, 47, 90));
 
-        uPassword.setText("jPasswordField1");
         uPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uPasswordFocusGained(evt);
             }
         });
 
-        uAge.setText("How old are you?");
         uAge.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uAgeFocusGained(evt);
@@ -177,7 +170,6 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
-        uHometown.setText("Where are you from?");
         uHometown.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uHometownFocusGained(evt);
@@ -213,7 +205,6 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Your Gender:");
 
-        uName.setText("How should we call you?");
         uName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uNameFocusGained(evt);
@@ -245,7 +236,7 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
 
-        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Secret", "Female", "Male", "Alien" }));
+        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "......", "Secret", "Female", "Male", "Alien" }));
         uGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uGenderActionPerformed(evt);
@@ -403,11 +394,24 @@ public class CreateUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(frame, "User ID cannot have more than 7 digits", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (iUpassword.length()==0) {
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            JOptionPane.showMessageDialog(frame, "User password cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;     
+        }
         createNewUser(iUID, iUpassword);
-        createNewUserProfile (iUID,iUname , iUage, iUloc, iUgender);
-        System.out.println(iUID + " " + iUpassword + " "+ iUname + iUgender);
-        dispose();
-        new FirstPage().setVisible(true);
+        if (iUname != "" && iUloc != "" && iUage != ""&& iUgender != "......") {
+            createNewUserProfile (iUID,iUname , iUage, iUloc, iUgender);
+            System.out.println(iUID + " " + iUpassword + " "+ iUname + iUgender);
+        } else {
+            System.out.println("No profile is created for user " + iUID);
+        }
+        JFrame frame = new JFrame();
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                JOptionPane.showMessageDialog(frame, "Your user id is u" + iUID ,"Welcome! "+uName, JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            new FirstPage().setVisible(true);
     }//GEN-LAST:event_signUpButtonMouseClicked
 
     private void uPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uPasswordFocusGained
