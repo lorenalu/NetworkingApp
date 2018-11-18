@@ -5,7 +5,7 @@
  */
 package Networkingapp.Connector;
 
-import Networkingapp.Database.OracleDatabaseConnect;
+import Networkingapp.Database.DatabaseManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -48,7 +48,7 @@ public class PostConnector {
         ResultSet res = null;
         
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             res = dbm.queryWithPrepareStatement ("SELECT * FROM post");
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +60,7 @@ public class PostConnector {
         ResultSet res = null;
         
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE user_ID = ?", UserConnector.getUserID());
         } catch (SQLException ex) {
             Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,7 +76,7 @@ public class PostConnector {
         String slp = selectPostID.trim();
         String sc = "There is no Content";
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             res = dbm.queryWithPrepareStatement ("SELECT post_content FROM post WHERE post_ID = ?", slp);
 
             if(res.next()){
@@ -99,7 +99,7 @@ public class PostConnector {
         int upst = 0;
         
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             upst = dbm.updateWithPrepareStatement ("INSERT INTO Post(post_ID, post_title, "
                     + "post_time, post_content, user_ID) "
                     + "VALUES(?, ?, ?, ?, ?)", rpID, pTitle.trim(),
@@ -136,7 +136,7 @@ public class PostConnector {
         }
                        
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             res = dbm.queryWithPrepareStatement ("SELECT * FROM post");
             while(res.next()){
                 if(res.getString(checkItem).equals(pItem) ){

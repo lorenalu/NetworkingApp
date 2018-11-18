@@ -5,7 +5,7 @@
  */
 package Networkingapp.Connector;
 
-import Networkingapp.Database.OracleDatabaseConnect;
+import Networkingapp.Database.DatabaseManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -81,7 +81,7 @@ public class ProfileConnector {
         ResultSet res;
 
         try {
-            OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+            DatabaseManager dbm = DatabaseManager.getInstance();
             res = dbm.queryWithPrepareStatement("SELECT * FROM Profile WHERE user_ID = ?", UserConnector.getUserID());
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
@@ -96,13 +96,13 @@ public class ProfileConnector {
         
         try {
             if(profileExits()){
-                OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+                DatabaseManager dbm = DatabaseManager.getInstance();
                 res = dbm.updateWithPrepareStatement("UPDATE Profile SET profile_name = ?,"
                                                      + " profile_age = ?, profile_gender = ?, "
                                                         + "profile_location = ? WHERE user_ID = ?", uName,
                         uAge, uGender, uIntroduction, UserConnector.getUserID());
             }else{
-                OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+                DatabaseManager dbm = DatabaseManager.getInstance();
                 res = dbm.updateWithPrepareStatement("INSERT IN TO Profile(profile_ID, profile_name, "
                                                          + "profile_age, profile_location " 
                                                             + "profile_gender) VALUES(?,?,?,?)",
@@ -120,7 +120,7 @@ public class ProfileConnector {
         ResultSet res = null;
         
         try{
-        OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+        DatabaseManager dbm = DatabaseManager.getInstance();
         res = dbm.queryWithPrepareStatement ("SELECT * FROM Profile WHERE user_ID = ?", UserConnector.getUserID());
         }catch(SQLException e){
             throw new SQLException(e.getMessage());

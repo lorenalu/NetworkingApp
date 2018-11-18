@@ -141,13 +141,14 @@ public class DatabaseLogin extends javax.swing.JFrame {
     private void login_buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_buttonMousePressed
         // TODO add your handling code here:
         
-//        oracle_password.setText(""); // TestDelete
-//        oracle_username.setText(""); // TestDelete
+        oracle_password.setText("a56509169"); // TestDelete
+        oracle_username.setText("ora_p2z0b"); // TestDelete
         
-        OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+        DatabaseManager dbm = DatabaseManager.getInstance();
         if(dbm.startConnection(oracle_username.getText(), oracle_password.getText())){
             // if the username and password are valid,
             // remove the login dialog
+            
             dispose();
             new Login().setVisible(true);
         }

@@ -5,8 +5,9 @@
  */
 package Networkingapp;
 
+import Networkingapp.Connector.SupervisorConnector;
 import Networkingapp.Connector.UserConnector;
-import Networkingapp.Database.OracleDatabaseConnect;
+import Networkingapp.Database.DatabaseManager;
 import Networkingapp.User.UserMain;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -206,9 +207,15 @@ public class Login extends javax.swing.JFrame {
         
         try {
             if(UserConnector.userExist(uid, pwd)){
-                UserConnector.setUserIDandPassword(uid, pwd);
-                dispose();
-                new UserMain().setVisible(true);
+                if(SupervisorConnector.superExist(uid)){
+                    SupervisorConnector.setSuperIDAndPassword(uid, pwd);
+                    dispose();
+                    new FirstPage().setVisible(true);
+                }else{
+                    UserConnector.setUserIDandPassword(uid, pwd);
+                    dispose();
+                    new UserMain().setVisible(true);
+                }
             }else{
                 loginAttempts++;
                 if (loginAttempts >= 3) {

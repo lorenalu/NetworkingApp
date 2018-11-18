@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Networkingapp.Connector;
-import Networkingapp.Database.OracleDatabaseConnect;
+import Networkingapp.Database.DatabaseManager;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,15 +16,13 @@ public class UserConnector{
     //DatabaseManager dbm = DatabaseManager.getInstance();
     private static String userID;
     private static String userPassword;
-    
-    
-    
+
     
     public static boolean userExist(String uID, String uPassword) throws SQLException{
         ResultSet res = null;
         String pwd = "";
         try{
-        OracleDatabaseConnect dbm = OracleDatabaseConnect.getInstance();
+        DatabaseManager dbm = DatabaseManager.getInstance();
         res = dbm.queryWithPrepareStatement ("SELECT * FROM App_User WHERE user_ID = ?", uID.trim());
         }catch(SQLException e){
             throw new SQLException(e.getMessage());

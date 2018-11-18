@@ -84,6 +84,8 @@ public class UserMain extends javax.swing.JFrame {
         gender_txtField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         intro_txtArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         bg_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -137,9 +139,9 @@ public class UserMain extends javax.swing.JFrame {
         age_txt.setBounds(161, 75, 158, 26);
 
         plain_label.setForeground(new java.awt.Color(102, 102, 102));
-        plain_label.setText("Not required, but suggest to fill in information.");
+        plain_label.setText("Only User Name is required.");
         editProfile_frame.getContentPane().add(plain_label);
-        plain_label.setBounds(40, 280, 298, 16);
+        plain_label.setBounds(120, 280, 190, 16);
 
         about_txt.setColumns(20);
         about_txt.setLineWrap(true);
@@ -147,7 +149,7 @@ public class UserMain extends javax.swing.JFrame {
         editProfile_txtpanel.setViewportView(about_txt);
 
         editProfile_frame.getContentPane().add(editProfile_txtpanel);
-        editProfile_txtpanel.setBounds(147, 163, 190, 100);
+        editProfile_txtpanel.setBounds(147, 163, 200, 100);
 
         gender_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Female", "Male", "Girl", "Boy", "Secret" }));
         editProfile_frame.getContentPane().add(gender_cb);
@@ -156,7 +158,7 @@ public class UserMain extends javax.swing.JFrame {
         editProfile_bg_label.setBackground(new java.awt.Color(204, 204, 204));
         editProfile_bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/edit-profile.png"))); // NOI18N
         editProfile_frame.getContentPane().add(editProfile_bg_label);
-        editProfile_bg_label.setBounds(-100, -50, 500, 450);
+        editProfile_bg_label.setBounds(-100, -50, 510, 450);
 
         getContentPane().add(editProfile_frame);
         editProfile_frame.setBounds(10, 10, 430, 420);
@@ -171,7 +173,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(post_button);
-        post_button.setBounds(470, 70, 75, 29);
+        post_button.setBounds(450, 70, 75, 29);
 
         editProfile_button.setText("Edit Profile");
         editProfile_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,7 +182,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(editProfile_button);
-        editProfile_button.setBounds(470, 150, 112, 29);
+        editProfile_button.setBounds(450, 190, 112, 29);
 
         msg_button.setText("Message");
         msg_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,7 +191,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(msg_button);
-        msg_button.setBounds(470, 110, 98, 29);
+        msg_button.setBounds(450, 150, 98, 29);
 
         userID_label.setText("User ID:");
         bg_panel.add(userID_label);
@@ -206,7 +208,7 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
         bg_panel.add(logout_button);
-        logout_button.setBounds(470, 300, 88, 29);
+        logout_button.setBounds(450, 300, 88, 29);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Profile"));
@@ -251,6 +253,14 @@ public class UserMain extends javax.swing.JFrame {
 
         bg_panel.add(jPanel1);
         jPanel1.setBounds(40, 60, 370, 270);
+
+        jButton1.setText("Comment");
+        bg_panel.add(jButton1);
+        jButton1.setBounds(450, 110, 105, 29);
+
+        jButton2.setText("Delete Account");
+        bg_panel.add(jButton2);
+        jButton2.setBounds(450, 260, 120, 29);
 
         getContentPane().add(bg_panel);
         bg_panel.setBounds(80, 50, 600, 370);
@@ -386,6 +396,8 @@ public class UserMain extends javax.swing.JFrame {
     private javax.swing.JLabel gender_label;
     private javax.swing.JTextField gender_txtField;
     private javax.swing.JTextArea intro_txtArea;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout_button;

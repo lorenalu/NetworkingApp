@@ -2,7 +2,7 @@ package Networkingapp.Database;
 
 import java.sql.*;
 
-public class OracleDatabaseConnect {
+public class DatabaseManager {
     
     // Suggest to read Before implementing (Chinese Wiki) 
     // http://wiki.jikexueyuan.com/project/jdbc/statements.html
@@ -21,18 +21,18 @@ public class OracleDatabaseConnect {
     // Chinese Explanation http://wiki.jikexueyuan.com/project/jdbc/statements.html
     
 
-    private static OracleDatabaseConnect dbm;
+    private static DatabaseManager dbm;
     private Connection con;
 
-    public static OracleDatabaseConnect getInstance(){
+    public static DatabaseManager getInstance(){
         if (dbm == null) {
-            dbm = new OracleDatabaseConnect();
+            dbm = new DatabaseManager();
         }
         return dbm;
     }
  
     // Initializing the Oracle JDBC driver
-    private OracleDatabaseConnect(){
+    private DatabaseManager(){
         try {
             // Do not need to Register JDBC driver here
             // BUT remember to put classes12.zip and hb15.zip in library
