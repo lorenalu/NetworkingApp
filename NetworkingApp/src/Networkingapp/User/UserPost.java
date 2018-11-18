@@ -326,18 +326,19 @@ public class UserPost extends javax.swing.JFrame {
     private void deletePost_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletePost_buttonMouseClicked
         // TODO add your handling code here:
         int[] index = postTable.getSelectedRows();
-        //System.out.println(index.length);
+        //System.out.println("step1");
         String pID;
         if (index.length > 0){
+            //System.out.println("step2");
             for(int i = 0; i < index.length; i++){
                 pID = postTable.getValueAt(index[i], 0).toString();
-                if(pID.equals("")){
-                    return;
-                }else{
-                    PostConnector.delPost(pID);
-                }
+
+                System.out.println("step start deleting");
+                PostConnector.delPost(pID);
+                
             }
         }
+        System.out.println("step done");
         initPost(postMode);
         repaint();
 
