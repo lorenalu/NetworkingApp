@@ -53,12 +53,12 @@ public class ProfileConnector {
         String uIntro = "";
         try {
             if(res.next()){
-                uIntro = res.getString("profile_location");}
+                uIntro = res.getString("profile_content");}
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
         return uIntro; 
-//        return res.getString("profile_location");
+//        return res.getString("profile_content");
     }
     
     public static String getUserGender() throws SQLException{
@@ -99,12 +99,12 @@ public class ProfileConnector {
                 DatabaseManager dbm = DatabaseManager.getInstance();
                 res = dbm.updateWithPrepareStatement("UPDATE Profile SET profile_name = ?,"
                                                      + " profile_age = ?, profile_gender = ?, "
-                                                        + "profile_location = ? WHERE user_ID = ?", uName,
+                                                        + "profile_content = ? WHERE user_ID = ?", uName,
                         uAge, uGender, uIntroduction, UserConnector.getUserID());
             }else{
                 DatabaseManager dbm = DatabaseManager.getInstance();
                 res = dbm.updateWithPrepareStatement("INSERT INTO Profile(profile_ID, profile_name, "
-                                                         + "profile_age, profile_location " 
+                                                         + "profile_age, profile_content " 
                                                             + "profile_gender) VALUES(?,?,?,?)",
                                                     uName, uAge, uGender , uIntroduction, UserConnector.getUserID());
             }

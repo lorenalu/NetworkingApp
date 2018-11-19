@@ -34,7 +34,7 @@ CREATE TABLE Profile(
 profile_ID VARCHAR(8) PRIMARY KEY,
 profile_name VARCHAR(15) NOT NULL,
 profile_age INTEGER,
-profile_location VARCHAR(30),
+profile_content VARCHAR(30),
 profile_gender VARCHAR(10),
 user_ID VARCHAR(8) UNIQUE,
 FOREIGN KEY(user_ID) REFERENCES App_User ON DELETE CASCADE);
@@ -88,9 +88,35 @@ PRIMARY KEY(user_ID, post_ID, comment_ID),
 FOREIGN KEY(user_ID) REFERENCES App_User ON DELETE CASCADE,
 FOREIGN KEY(post_ID) REFERENCES Post ON DELETE CASCADE);
 
+INSERT INTO post VALUES('post0001', 'test1', '2008-07-09 15:45:21', 'haha', 'u0000001' );
+INSERT INTO post VALUES('post0002', 'test2', '2008-07-09 15:45:21', 'hahaha', 'u0000002' );
+
+INSERT INTO App_Comment VALUES('u0000001', 'post0001', 'test1','2008-07-09 15:45:21', 'not this');
+INSERT INTO App_Comment VALUES('u0000001', 'post0002', 'test2','2008-07-09 15:45:21', 'yes this');
+INSERT INTO App_Comment VALUES('u0000002', 'post0002', 'test3','2008-07-09 15:45:21', 'yes this');
+
+SELECT DISTINCT post_ID FROM post WHERE NOT EXISTS (SELECT App_Comment.user_ID, post.post_ID FROM post, App_Comment MINUS SELECT user_ID, post_ID FROM App_Comment);
+
+SELECT App_Comment.user_ID, post.post_ID FROM post, App_Comment MINUS SELECT user_ID, post_ID FROM App_Comment;
+
+
+SELECT * FROM Post p
+WHERE NOT EXISTS (( SELECT u.user_ID FROM App_User u)
+MINUS
+ (SELECT a.user_ID FROM App_Comment a WHERE a.post_ID = p.post_ID ));
+
+
+
+SELECT Post FROM App_Comment
+
+
+SELECT DISTINCT user_ID FROM App_User u1 WHERE (SELECT App_User FROM Post, App_Comment MINUS SELECT user_ID FROM App_User u2 WHERE u1.user_ID = u2.user_ID) IS NULL;
+
+
+
 CREATE TABLE Advertisement(
 post_ID VARCHAR(8) PRIMARY KEY,
-advertisement_pay REAL NOT NULL,
+advertisement_fee REAL NOT NULL,
 advertisement_brand VARCHAR(30) NOT NULL,
 FOREIGN KEY(post_ID) REFERENCES Post ON DELETE CASCADE);
 
@@ -142,8 +168,7 @@ INSERT INTO LOGIN VALUES('31.86.129.184','2012-12-11 12:12:50','10000009');
 INSERT INTO LOGIN VALUES('31.86.129.184','2011-01-11 05:12:02','10000010');
 
 
-insert into App_User values
-( 'u0000001', 'abc12345678');
+insert into App_User values( 'u0000001', 'abc12345678');
 
 insert into App_User values
 ( 'u0000002', 'abc12345678');
@@ -320,10 +345,10 @@ insert into Category values
 ( 'Parents', 'how to fight with mom and dad');
 
 insert into Post values
-( 'post0001', 'Raincouver Weather', '2018-01-01 00:00:01','weather is greate today!', 'u0000005');
+( 'post0001', 'Raincouver Weather', '2018-01-01 00:00:01','weather is greate today!', 'u0000001');
 
 insert into Post values
-( 'post0002', 'Raincouver Weather', '2018-02-01 00:00:02','weather is bad today!', 'u0000002');
+( 'post0002', 'Raincouver Weather', '2018-02-01 00:00:02','weather is bad today!', 'u0000001');
 
 insert into Post values
 ( 'post0003', 'How to feed a husky', '2018-01-01 00:00:03','Husky looks soooooo coollllll', 'u0000003');

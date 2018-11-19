@@ -35,7 +35,7 @@ CREATE TABLE Profile(
 profile_ID VARCHAR(8) PRIMARY KEY,
 profile_name VARCHAR(15) NOT NULL,
 profile_age INTEGER,
-profile_location VARCHAR(60),
+profile_content VARCHAR(60),
 profile_gender VARCHAR(10),
 user_ID VARCHAR(8) UNIQUE,
 FOREIGN KEY(user_ID) REFERENCES App_User ON DELETE CASCADE);
@@ -91,7 +91,7 @@ FOREIGN KEY(post_ID) REFERENCES Post ON DELETE CASCADE);
 
 CREATE TABLE Advertisement(
 post_ID VARCHAR(8) PRIMARY KEY,
-advertisement_pay REAL NOT NULL,
+advertisement_fee REAL NOT NULL,
 advertisement_brand VARCHAR(30) NOT NULL,
 FOREIGN KEY(post_ID) REFERENCES Post ON DELETE CASCADE);
 

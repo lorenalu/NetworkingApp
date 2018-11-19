@@ -36,7 +36,7 @@ public class AdvertisementSummary extends javax.swing.JFrame {
        
         allContent= new DefaultListModel();
         
-        String selectCategory ="create view AdvertisementContent as select a.advertisement_pay,"
+        String selectCategory ="create view AdvertisementContent as select a.advertisement_fee,"
                                       + "a.advertisement_brand, p.user_ID " 
                                         + "from Post p, Advertisement a";           
       
@@ -49,7 +49,7 @@ public class AdvertisementSummary extends javax.swing.JFrame {
             
              while (rs.next()){
                 String a = rs.getString("user_ID");
-                String b= rs.getString("advertisement_pay");
+                String b= rs.getString("advertisement_fee");
                 String c= rs.getString("advertisement_brand");
                 String str= a+ "                 "+ b +"                "+ c;
                 allContent.addElement(str);
