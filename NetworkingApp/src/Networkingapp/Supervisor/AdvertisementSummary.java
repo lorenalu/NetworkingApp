@@ -38,8 +38,7 @@ public class AdvertisementSummary extends javax.swing.JFrame {
         
         String selectCategory ="create view AdvertisementContent as select a.advertisement_fee,"
                                       + "a.advertisement_brand, p.user_ID " 
-                                        + "from Post p, Advertisement a";           
-      
+                                        + "from Post p, Advertisement a ,Post p where a.post_ID = p.POST_ID";           
         
         ResultSet rs;
         try {
