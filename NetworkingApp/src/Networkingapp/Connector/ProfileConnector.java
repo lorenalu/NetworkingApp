@@ -103,7 +103,7 @@ public class ProfileConnector {
                         uAge, uGender, uIntroduction, UserConnector.getUserID());
             }else{
                 DatabaseManager dbm = DatabaseManager.getInstance();
-                res = dbm.updateWithPrepareStatement("INSERT IN TO Profile(profile_ID, profile_name, "
+                res = dbm.updateWithPrepareStatement("INSERT INTO Profile(profile_ID, profile_name, "
                                                          + "profile_age, profile_location " 
                                                             + "profile_gender) VALUES(?,?,?,?)",
                                                     uName, uAge, uGender , uIntroduction, UserConnector.getUserID());

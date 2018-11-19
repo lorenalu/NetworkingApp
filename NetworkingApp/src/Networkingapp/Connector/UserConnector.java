@@ -6,6 +6,8 @@
 package Networkingapp.Connector;
 import Networkingapp.Database.DatabaseManager;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author peichen
@@ -14,13 +16,17 @@ public class UserConnector{
     //DatabaseManager dbm = DatabaseManager.getInstance();
     private static String userID;
     private static String userPassword;
+
     
-    
-    
-    
+    // Select
+    // Where
+    // Given User ID and Password to check is the user exit or not
     public static boolean userExist(String uID, String uPassword) throws SQLException{
         ResultSet res = null;
         String pwd = "";
+        if (uID.equals("") || uPassword.equals("")){
+            return false;
+        }
         try{
         DatabaseManager dbm = DatabaseManager.getInstance();
         res = dbm.queryWithPrepareStatement ("SELECT * FROM App_User WHERE user_ID = ?", uID.trim());
