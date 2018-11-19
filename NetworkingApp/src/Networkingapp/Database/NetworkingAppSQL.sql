@@ -410,6 +410,18 @@ insert into Post_Category values
 insert into Post_Category values
 ( 'post0010', 'Pet');
 
+insert into App_Comment values
+( 'u0000001', 'post1002', '3','2018-01-01 00:00:01','how to fight with mom and dad');
+
+insert into App_Comment values
+( 'u0000002', 'post1003', '3','2018-01-01 00:00:01','how to fight with mom and dad');
+
+insert into App_Comment values
+( 'u0000003', 'post1005', '3','2018-01-01 00:00:01','hahahhaha');
+
+insert into App_Comment values
+( 'u0000001', 'post1002', '4','2018-01-01 00:00:01','how to fight with mom and dad');
+
 insert into Advertisement values
 ('post1001', 1000000,'UBC CPSC department');
 

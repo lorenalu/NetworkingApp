@@ -17,22 +17,25 @@ import javax.swing.JOptionPane;
  *
  * @author peichen
  */
-public class CreatePost extends javax.swing.JFrame {
-
+public class EditPost extends javax.swing.JFrame {
+    private static String postID;
     /**
      * Creates new form CreatePost
+     * @param postID
      */
-    public String SelectCate = "";
-    public CreatePost() {
+    public EditPost(String postID) {
+        EditPost.postID = postID;
         initComponents();
+        initEdit();
         initComboC();
     }
+    
     
     private void initComboC(){
         try {
             ResultSet res = CategoryConnector.getAllCategoryName();
             while(res.next()){
-                Category_cb.addItem(res.getString("category_Name"));
+                jComboBox1.addItem(res.getString("category_Name"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CreatePost.class.getName()).log(Level.SEVERE, null, ex);
@@ -40,6 +43,17 @@ public class CreatePost extends javax.swing.JFrame {
 
     }
 
+    private void initEdit(){
+        try {
+            ResultSet res = PostConnector.getSelectedPost(0, postID);
+            String pContent = res.getString("post_content");
+            String pTitle = res.getString("post_title");
+            postTitle_txt.setText(pTitle);
+            postContent_txt.setText(pContent);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +69,7 @@ public class CreatePost extends javax.swing.JFrame {
         postTitle_txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         postContent_txt = new javax.swing.JTextPane();
-        Category_cb = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         save_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -89,14 +103,9 @@ public class CreatePost extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(140, 180, 280, 180);
 
-        Category_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                 <Select Category>" }));
-        Category_cb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Category_cbActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Category_cb);
-        Category_cb.setBounds(140, 130, 280, 27);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "     <Add New Category To Post>" }));
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(140, 130, 280, 27);
 
         save_button.setText("Save");
         save_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +127,7 @@ public class CreatePost extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Songti TC", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Create New Post");
+        jLabel5.setText("Edit Your Post");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(170, 20, 180, 35);
 
@@ -138,12 +147,9 @@ public class CreatePost extends javax.swing.JFrame {
         if( pTitle.isEmpty() || pTitle.equals("")){
             JOptionPane.showMessageDialog(null, "Title Cannot Be Blank.", "CREATE ERROR", JOptionPane.ERROR_MESSAGE);
             dispose();
-            new UserPost().setVisible(true);
-            
+            return;
         }
-        
-        PostConnector.createPost(pTitle, pContent, SelectCate); 
-        //CategoryConnector.insertCategory(PostConnector);        
+        PostConnector.editPost(postID, pTitle, pContent);         
         dispose();
         new UserPost().setVisible(true);
         //UserPost.refreshPostPage();
@@ -154,15 +160,6 @@ public class CreatePost extends javax.swing.JFrame {
         dispose();
         new UserPost().setVisible(true);
     }//GEN-LAST:event_cancel_buttonMouseClicked
-
-    private void Category_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Category_cbActionPerformed
-        // TODO add your handling code here:
-        String seletC = Category_cb.getSelectedItem().toString().trim();
-        String str = "                 <Select Category>";
-        if(!seletC.equals(str.trim())){
-            SelectCate = seletC;
-        }
-    }//GEN-LAST:event_Category_cbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,27 +178,28 @@ public class CreatePost extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreatePost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreatePost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreatePost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreatePost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreatePost().setVisible(true);
+                new EditPost(postID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Category_cb;
     private javax.swing.JButton cancel_button;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
