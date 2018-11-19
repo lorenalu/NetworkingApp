@@ -227,4 +227,40 @@ public class PostConnector {
         
     }
     
+    
+    public static ResultSet getSelectedPost(int checkType, String checkItem){
+        ResultSet res = null;
+        String pItem = checkItem.trim();
+        String checkOp = "post_ID = ?";
+        switch (checkType){
+            case 0:
+                break;
+            case 1:
+                checkOp = "post_title = ?";
+                break;
+            case 2:
+                checkOp = "post_time = ?";
+                break;
+            case 3:
+                checkOp = "post_content = ?";
+                break;                
+            case 4:
+                checkOp = "user_ID = ?";
+                break;            
+        }
+                       
+        try {
+            DatabaseManager dbm = DatabaseManager.getInstance();
+            res = dbm.queryWithPrepareStatement ("SELECT * FROM post WHERE " + checkOp, checkItem);
+            if(res.next()){
+                return res;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return res;
+        
+    }
+    
 }

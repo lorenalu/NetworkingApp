@@ -37,7 +37,7 @@ public class UserPost extends javax.swing.JFrame {
         ResultSet res0;
         ResultSet res1;
         res0 = PostConnector.getPost(mode);
-        res1 = CategoryConnector.getCategory(mode);
+        
         
         DefaultTableModel model = (DefaultTableModel) postTable.getModel();
         int rowCount = model.getRowCount();
@@ -51,6 +51,7 @@ public class UserPost extends javax.swing.JFrame {
                 String pTitle = res0.getString("post_title");
                 String pTime = res0.getString("post_time");
                 String cName = "";
+                res1 = CategoryConnector.getSelectedPostCategory(pID);
                 if(res1.next())
                     cName += res1.getString("category_Name");
         
@@ -112,18 +113,21 @@ public class UserPost extends javax.swing.JFrame {
         contentDsiplay = new javax.swing.JTextArea();
         allPost_button = new javax.swing.JButton();
         myPost_button = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        editPost_button = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         postTable = new javax.swing.JTable();
         deletePost_button = new javax.swing.JButton();
         goback_button = new javax.swing.JButton();
+        CreatePost_button = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        bg_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Post");
         getContentPane().setLayout(null);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to Post"));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Welcome to Networking Post", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 24))); // NOI18N
         jPanel1.setToolTipText("");
 
         jLabel1.setText("Search");
@@ -135,7 +139,7 @@ public class UserPost extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         contentDsiplay.setColumns(20);
-        contentDsiplay.setFont(new java.awt.Font("Toppan Bunkyu Mincho", 0, 24)); // NOI18N
+        contentDsiplay.setFont(new java.awt.Font("Toppan Bunkyu Mincho", 0, 18)); // NOI18N
         contentDsiplay.setLineWrap(true);
         contentDsiplay.setRows(5);
         jScrollPane2.setViewportView(contentDsiplay);
@@ -154,12 +158,10 @@ public class UserPost extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Edit Post");
-
-        jButton5.setText("Create Post");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        editPost_button.setText("Edit Post");
+        editPost_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                editPost_buttonMouseClicked(evt);
             }
         });
 
@@ -200,18 +202,27 @@ public class UserPost extends javax.swing.JFrame {
             }
         });
 
+        CreatePost_button.setText("Create Post");
+        CreatePost_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CreatePost_buttonMouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Comment");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,20 +236,23 @@ public class UserPost extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(allPost_button)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                 .addComponent(myPost_button)
                                 .addGap(45, 45, 45)
-                                .addComponent(jButton4)
-                                .addGap(34, 34, 34)
-                                .addComponent(jButton5)
-                                .addGap(23, 23, 23)))
+                                .addComponent(editPost_button)
+                                .addGap(40, 40, 40)
+                                .addComponent(CreatePost_button)
+                                .addGap(35, 35, 35)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(deletePost_button)
                                 .addGap(33, 33, 33)
-                                .addComponent(goback_button)))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                                .addComponent(goback_button))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(78, 78, 78)))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,31 +264,39 @@ public class UserPost extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(allPost_button)
                     .addComponent(myPost_button)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
+                    .addComponent(editPost_button)
                     .addComponent(deletePost_button)
-                    .addComponent(goback_button))
+                    .addComponent(goback_button)
+                    .addComponent(CreatePost_button))
                 .addGap(44, 44, 44))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(66, 50, 911, 488);
+        jPanel1.setBounds(40, 50, 911, 488);
 
-        setSize(new java.awt.Dimension(1040, 619));
+        bg_label.setBackground(new java.awt.Color(0, 0, 0));
+        bg_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Networkingapp/Pictures/User-Main-background.jpg"))); // NOI18N
+        getContentPane().add(bg_label);
+        bg_label.setBounds(0, 0, 1000, 600);
+
+        setSize(new java.awt.Dimension(993, 619));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        new CreatePost().setVisible(true);
+        //new CreatePost().setVisible(true);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void postTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postTableMouseClicked
@@ -333,16 +355,37 @@ public class UserPost extends javax.swing.JFrame {
             for(int i = 0; i < index.length; i++){
                 pID = postTable.getValueAt(index[i], 0).toString();
 
-                System.out.println("step start deleting");
+                //System.out.println("step start deleting");
                 PostConnector.delPost(pID);
                 
             }
         }
-        System.out.println("step done");
+        //System.out.println("step done");
         initPost(postMode);
         repaint();
 
     }//GEN-LAST:event_deletePost_buttonMouseClicked
+
+    private void editPost_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPost_buttonMouseClicked
+        // TODO add your handling code here:
+        
+        int[] index = postTable.getSelectedRows();
+        if(index.length == 1){
+            int selectedIndex = index[0];
+            String pID = postTable.getValueAt(selectedIndex, 0).toString();
+            pID.trim();
+            dispose();
+            new EditPost(pID).setVisible(true);
+                    
+        }
+       
+    }//GEN-LAST:event_editPost_buttonMouseClicked
+
+    private void CreatePost_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreatePost_buttonMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        new CreatePost().setVisible(true);
+    }//GEN-LAST:event_CreatePost_buttonMouseClicked
 
     private void initContent(String postID){
         
@@ -388,22 +431,24 @@ public class UserPost extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton allPost_button;
-    private javax.swing.JTextArea contentDsiplay;
-    private javax.swing.JButton deletePost_button;
-    private javax.swing.JButton goback_button;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton myPost_button;
-    private javax.swing.JTable postTable;
+    javax.swing.JButton CreatePost_button;
+    javax.swing.JButton allPost_button;
+    javax.swing.JLabel bg_label;
+    javax.swing.JTextArea contentDsiplay;
+    javax.swing.JButton deletePost_button;
+    javax.swing.JButton editPost_button;
+    javax.swing.JButton goback_button;
+    javax.swing.JButton jButton1;
+    javax.swing.JButton jButton2;
+    javax.swing.JComboBox<String> jComboBox1;
+    javax.swing.JFileChooser jFileChooser1;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JPanel jPanel1;
+    javax.swing.JScrollPane jScrollPane2;
+    javax.swing.JScrollPane jScrollPane3;
+    javax.swing.JTextField jTextField1;
+    javax.swing.JButton myPost_button;
+    javax.swing.JTable postTable;
     // End of variables declaration//GEN-END:variables
 }

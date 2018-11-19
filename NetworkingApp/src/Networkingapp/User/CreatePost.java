@@ -5,7 +5,12 @@
  */
 package Networkingapp.User;
 
+import Networkingapp.Connector.CategoryConnector;
 import Networkingapp.Connector.PostConnector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +24,19 @@ public class CreatePost extends javax.swing.JFrame {
      */
     public CreatePost() {
         initComponents();
+        initComboC();
+    }
+    
+    private void initComboC(){
+        try {
+            ResultSet res = CategoryConnector.getAllCategoryName();
+            while(res.next()){
+                Category_cb.addItem(res.getString("category_Name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CreatePost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -36,7 +54,7 @@ public class CreatePost extends javax.swing.JFrame {
         postTitle_txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         postContent_txt = new javax.swing.JTextPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Category_cb = new javax.swing.JComboBox<>();
         save_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -70,9 +88,14 @@ public class CreatePost extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(140, 180, 280, 180);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(140, 130, 280, 27);
+        Category_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                 <Select Category>" }));
+        Category_cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Category_cbActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Category_cb);
+        Category_cb.setBounds(140, 130, 280, 27);
 
         save_button.setText("Save");
         save_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,6 +151,15 @@ public class CreatePost extends javax.swing.JFrame {
         new UserPost().setVisible(true);
     }//GEN-LAST:event_cancel_buttonMouseClicked
 
+    private void Category_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Category_cbActionPerformed
+        // TODO add your handling code here:
+        String seletC = Category_cb.getSelectedItem().toString().trim();
+        String str = "                 <Select Category>";
+        if(!seletC.equals(str.trim())){
+            
+        }
+    }//GEN-LAST:event_Category_cbActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -164,8 +196,8 @@ public class CreatePost extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Category_cb;
     private javax.swing.JButton cancel_button;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
